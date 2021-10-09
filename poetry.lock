@@ -66,7 +66,7 @@ stevedore = ">=1.20.0"
 name = "boltons"
 version = "21.0.0"
 description = "When they're not builtins, they're boltons."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -1464,7 +1464,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<3.10"
-content-hash = "82003a8414ec18798bbcac6b746fcc4e6690c7674481189c806d4c15e9672f9a"
+content-hash = "8f5790059c44ca542c6f82cbd028a1ad56f6e2c529dd746ba3c5e939b4029cea"
 
 [metadata.files]
 astor = [
