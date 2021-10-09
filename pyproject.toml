@@ -24,15 +24,20 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
+
+[tool.poetry.scripts]
+j = "jeeves_core.cli:app"
+
+
 [tool.poetry.dependencies]
 python = ">=3.7,<3.10"
+python-benedict = "^0.24.3"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
 
 wemake-python-styleguide = "^0.15"
 flake8-pytest-style = "^1.5"
-nitpick = "^0.27"
 
 safety = "^1.10"
 
@@ -47,6 +52,7 @@ mkdocs = "^1.2.2"
 octadocs = "^0.2.0"
 mkdocstrings = "^0.16.2"
 mkdocs-material = "^7.3.2"
+flake8 = "3.9.0"
 
 [tool.flakehell]
 base = "https://raw.githubusercontent.com/Recall-Masters/standards/main/pyproject.toml"

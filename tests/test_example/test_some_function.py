@@ -1,16 +1,2 @@
-# -*- coding: utf-8 -*-
-
-import pytest
-
-from jeeves_core.example import some_function
-
-
-@pytest.mark.parametrize(('first', 'second', 'expected'), [
-    (1, 2, 3),
-    (2, 4, 6),
-    (-2, -3, -5),
-    (-5, 5, 0),
-])
-def test_some_function(first, second, expected):
+def test_some_function():
     """Example test with parametrization."""
-    assert some_function(first, second) == expected
