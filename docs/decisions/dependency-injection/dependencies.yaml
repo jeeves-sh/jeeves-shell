@@ -1,0 +1,4 @@
+$id: dependencies
+octa:url: https://github.com/proofit404/dependencies
+octa:title: dependencies
+requires-classes: true
