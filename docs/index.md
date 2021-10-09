@@ -1,1 +1,4 @@
-# Welcome to jeeves-core documentation!
+---
+title: Welcome to jeeves!
+---
+ 

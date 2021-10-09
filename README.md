@@ -8,28 +8,10 @@
 Pythonic replacement for GNU Make: core
 
 
-## Features
-
-- Fully typed with annotations and checked with mypy, [PEP561 compatible](https://www.python.org/dev/peps/pep-0561/)
-- Add yours!
-
-
 ## Installation
 
 ```bash
 pip install jeeves-core
-```
-
-
-## Example
-
-Showcase how your project can be used:
-
-```python
-from jeeves_core.example import some_function
-
-print(some_function(3, 4))
-# => 7
 ```
 
 ## License

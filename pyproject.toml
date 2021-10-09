@@ -25,7 +25,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.6,<4.0"
+python = ">=3.7,<3.10"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
@@ -43,6 +43,10 @@ pytest-randomly = "^3.8"
 m2r2 = "^0.2"
 tomlkit = "^0.7"
 flakehell = "^0.9.0"
+mkdocs = "^1.2.2"
+octadocs = "^0.2.0"
+mkdocstrings = "^0.16.2"
+mkdocs-material = "^7.3.2"
 
 [tool.flakehell]
 base = "https://raw.githubusercontent.com/Recall-Masters/standards/main/pyproject.toml"

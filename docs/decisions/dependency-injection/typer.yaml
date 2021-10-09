@@ -1,0 +1,7 @@
+- $id: typer-di
+  octa:url: https://github.com/tiangolo/typer/issues/80
+  octa:title: does not exist
+
+- $id: typer
+  octa:url: https://github.com/tiangolo/typer
+  octa:title: Typer
