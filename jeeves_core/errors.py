@@ -19,7 +19,7 @@ class InvalidCommand(DocumentedError):
 @dataclass
 class NoPluginsInstalled(DocumentedError):
     """
-    No plugins installed.
+    No plugins installed 🤷
 
     This might mean that you have installed `jeeves-core` but no plugins.
 

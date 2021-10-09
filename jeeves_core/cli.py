@@ -6,7 +6,7 @@ from boltons.iterutils import remap
 from rich.traceback import install
 from typer import Typer
 
-from jeeves_core.models import InvalidCommand, NoPluginsInstalled
+from jeeves_core.errors import InvalidCommand, NoPluginsInstalled
 
 
 def remap_enter(_path: Tuple[str, ...], key: str, key_value: object):
@@ -53,6 +53,9 @@ def app() -> None:
         points = entry_points()['jeeves']
     except KeyError as err:
         raise NoPluginsInstalled() from err
+
+    if not points:
+        raise NoPluginsInstalled()
 
     commands_tree = benedict()
     for point in points:
