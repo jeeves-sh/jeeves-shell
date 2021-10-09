@@ -1,0 +1,26 @@
+site_name: jeeves-core
+repo_url: https://github.com/jeeves-sh/jeeves-core
+repo_name: jeeves-core
+copyright: Copyright &copy; 2021 jeeves-core
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - attr_list
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+  - search
+  - mkdocstrings
+  - octadocs
+  - octadocs_adr
+  - macros:
+      modules:
+        - octadocs.macros
+
+theme:
+  name: material
