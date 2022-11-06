@@ -1,81 +1,18 @@
-import importlib.util
-import sys
 from collections import defaultdict
 from pathlib import Path
-from typing import Tuple, Callable, Iterable
+from typing import Dict, Any
 
 from typer import Typer
 
-from jeeves_core.errors import InvalidCommand
+from jeeves_core.errors import InvalidCommand, AppCreationFailed
+from jeeves_core.process_modules import parse_module
 
 
-def import_module_by_path(path: Path):
-    """
-    Import module knowing its filesystem path.
-
-    Source: https://stackoverflow.com/a/67692/1245471
-    """
-    module_name = str(path).strip('/').replace('.', '_').replace('/', '.')
-    spec = importlib.util.spec_from_file_location(module_name, path)
-    foo = importlib.util.module_from_spec(spec)
-    sys.modules[module_name] = foo
-    spec.loader.exec_module(foo)
-    return foo
-
-
-def remap_enter(_path: Tuple[str, ...], key: str, key_value: object):
-    """Enter the node of the tree."""
-    if isinstance(key_value, dict):
-        return Typer(), key_value.items()
-
-    if callable(key_value):
-        return key_value, False
-
-    raise InvalidCommand(
-        name=key,
-        command=key_value,
-    )
-
-
-def remap_exit(
-    _path: Tuple[str, ...],
-    _key: str,
-    _old_parent,
-    new_parent: Typer,
-    new_items,
-):
-    """Exit the node of the tree."""
-    for command_name, function_or_app in new_items:
-        if isinstance(function_or_app, Typer):
-            new_parent.add_typer(
-                typer_instance=function_or_app,
-                name=command_name,
-            )
-        else:
-            new_parent.command(
-                name=command_name,
-            )(function_or_app)
-
-    return new_parent
-
-
-def collect_commands(path: Path) -> Iterable[Tuple[str, Callable]]:
-    for directory in [path, *path.parents]:
-        jeeves_file = directory / 'jeeves.py'
-
-        if jeeves_file.is_file():
-            jeeves_module = import_module_by_path(jeeves_file)
-
-            for name, python_object in vars(jeeves_module).items():
-                if callable(python_object):
-                    yield name, python_object
-
-
-def recursive_dict():
+def recursive_dict() -> Dict[str, Any]:  # type: ignore
     return defaultdict(recursive_dict)
 
 
-def app_from_tree(tree):
+def app_from_tree(tree: Dict[str, Any]):   # type: ignore
     root_app = Typer()
 
     for key, value in tree.items():
@@ -92,8 +29,7 @@ def app_from_tree(tree):
 
 
 def app() -> None:
-    current_path = Path.cwd()
-    names_and_commands = collect_commands(current_path)
+    names_and_commands = parse_module(Path.cwd() / 'jeeves.py')
     sequences_and_commands = [
         (name.split('__'), command)
         for name, command in names_and_commands
@@ -108,7 +44,14 @@ def app() -> None:
 
         root[sequence[-1]] = command
 
-    return app_from_tree(tree)()
+    app = app_from_tree(tree)
+
+    try:
+        return app()
+    except RuntimeError as err:
+        raise AppCreationFailed(
+            tree=tree,
+        ) from err
 
 
 if __name__ == '__main__':

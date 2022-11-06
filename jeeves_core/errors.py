@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from pathlib import Path
 
 from documented import DocumentedError
 
@@ -25,3 +26,25 @@ class NoPluginsInstalled(DocumentedError):
 
     Look out for interesting plugins at https://jeeves.sh 🙂
     """
+
+
+@dataclass
+class NoJeevesFile(DocumentedError):
+    """
+    `jeeves.py` file not found.
+
+    Expected to be found at: {self.path}
+    """
+
+    path: Path
+
+
+@dataclass
+class AppCreationFailed(DocumentedError):
+    """
+    Typer app creation has failed.
+
+    Tree: {self.tree}
+    """
+
+    tree: object

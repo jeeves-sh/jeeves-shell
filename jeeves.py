@@ -1,8 +1,11 @@
-def test__foo():
-    """This is a test nested function."""
-    print('test!!')
+from pathlib import Path
+
+from plumbum.cmd import mypy, flakehell
+from typer import Argument
 
 
-def bazinga():
-    """test function"""
-    print('boo')
+def lint(path: Path = Argument('.')):
+    """Run Python linters."""
+
+    mypy(path)
+    flakehell('lint', path)
