@@ -11,10 +11,12 @@ Tree = Dict[str, Any]    # type: ignore
 
 
 def recursive_dict() -> Tree:
+    """Recursive dict."""
     return defaultdict(recursive_dict)
 
 
 def app_from_tree(tree: Dict[str, Any]):   # type: ignore
+    """Construct Typer app and add commands and subcommands."""
     root_app = Typer()
 
     for key, sub_tree in tree.items():
