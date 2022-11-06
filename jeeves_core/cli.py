@@ -1,53 +1,57 @@
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict
 
 from typer import Typer
 
-from jeeves_core.errors import InvalidCommand, AppCreationFailed
+from jeeves_core.errors import AppCreationFailed
 from jeeves_core.process_modules import parse_module
 
+Tree = Dict[str, Any]    # type: ignore
 
-def recursive_dict() -> Dict[str, Any]:  # type: ignore
+
+def recursive_dict() -> Tree:
     return defaultdict(recursive_dict)
 
 
 def app_from_tree(tree: Dict[str, Any]):   # type: ignore
     root_app = Typer()
 
-    for key, value in tree.items():
-        if isinstance(value, dict):
+    for key, sub_tree in tree.items():
+        if isinstance(sub_tree, dict):
             root_app.add_typer(
-                app_from_tree(value),
+                app_from_tree(sub_tree),
                 name=key,
             )
 
         else:
-            root_app.command(name=key)(value)
+            root_app.command(name=key)(sub_tree)
 
     return root_app
 
 
-def app() -> None:
-    names_and_commands = parse_module(Path.cwd() / 'jeeves.py')
-    sequences_and_commands = [
-        (name.split('__'), command)
-        for name, command in names_and_commands
-    ]
-
+def construct_tree() -> Tree:
+    """Construct tree of commands."""
     tree = recursive_dict()
 
-    for sequence, command in sequences_and_commands:
+    for sequence, command in parse_module(Path.cwd() / 'jeeves.py'):
         root = tree
         for segment in sequence[:-1]:
             root = root[segment]
 
         root[sequence[-1]] = command
 
-    app = app_from_tree(tree)
+    return tree
+
+
+def app() -> None:
+    """Construct and return Typer app."""
+    tree = construct_tree()
+
+    typer_app = app_from_tree(tree)
 
     try:
-        return app()
+        return typer_app()
     except RuntimeError as err:
         raise AppCreationFailed(
             tree=tree,

@@ -18,17 +18,6 @@ class InvalidCommand(DocumentedError):
 
 
 @dataclass
-class NoPluginsInstalled(DocumentedError):
-    """
-    No plugins installed 🤷
-
-    This might mean that you have installed `jeeves-core` but no plugins.
-
-    Look out for interesting plugins at https://jeeves.sh 🙂
-    """
-
-
-@dataclass
 class NoJeevesFile(DocumentedError):
     """
     `jeeves.py` file not found.

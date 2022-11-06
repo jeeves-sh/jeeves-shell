@@ -1,9 +1,10 @@
-import importlib.util
+import importlib
 import string
 import sys
 import types
+from importlib import util as importlib_util
 from pathlib import Path
-from typing import Iterable, Tuple, Callable
+from typing import Iterable, List, Tuple
 
 import more_itertools
 
@@ -17,12 +18,12 @@ def import_module_by_path(path: Path):
     Source: https://stackoverflow.com/a/67692/1245471
     """
     module_name = str(path).strip('/').replace('.', '_').replace('/', '.')
-    spec = importlib.util.spec_from_file_location(module_name, path)
+    spec = importlib_util.spec_from_file_location(module_name, path)
 
     if spec is None:
         raise ValueError('Spec is none. This is an unknown error. Panicking!')
 
-    imported_module = importlib.util.module_from_spec(spec)
+    imported_module = importlib_util.module_from_spec(spec)
     sys.modules[module_name] = imported_module
 
     try:
@@ -34,7 +35,7 @@ def import_module_by_path(path: Path):
 
 
 def is_function(python_object) -> bool:
-    return type(python_object) == types.FunctionType
+    return isinstance(python_object, types.FunctionType)
 
 
 def is_name_suitable(name: str):
@@ -43,10 +44,10 @@ def is_name_suitable(name: str):
     return first_character not in f'{string.ascii_uppercase}_'
 
 
-def parse_module(path: Path) -> Iterable[Tuple[str, types.FunctionType]]:
+def parse_module(path: Path) -> Iterable[Tuple[List[str], types.FunctionType]]:
     """Load and parse a module."""
     jeeves_module = import_module_by_path(path)
 
-    for name, python_object in vars(jeeves_module).items():
+    for name, python_object in vars(jeeves_module).items():  # noqa: WPS421
         if is_name_suitable(name) and is_function(python_object):
-            yield name, python_object
+            yield name.split('__'), python_object

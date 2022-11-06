@@ -30,15 +30,15 @@ j = "jeeves_core.cli:app"
 
 
 [tool.poetry.dependencies]
-python = ">=3.7,<3.10"
+python = ">=3.8,<3.10"
 python-benedict = "^0.24.3"
 boltons = "^21.0.0"
+typer = "^0.7.0"
+documented = "^0.1.1"
+more-itertools = "^9.0.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
-
-wemake-python-styleguide = "^0.15"
-flake8-pytest-style = "^1.5"
 
 safety = "^1.10"
 
@@ -50,10 +50,19 @@ m2r2 = "^0.2"
 tomlkit = "^0.7"
 flakehell = "^0.9.0"
 mkdocs = "^1.2.2"
-octadocs = "^0.2.0"
 mkdocstrings = "^0.16.2"
 mkdocs-material = "^7.3.2"
-flake8 = "3.9.0"
+wemake-python-styleguide = "^0.17.0"
 
 [tool.flakehell]
 base = "https://raw.githubusercontent.com/Recall-Masters/standards/main/pyproject.toml"
+
+# https://github.com/flakehell/flakehell/issues/10#issuecomment-822720074
+extended_default_ignore=[]  # add this
+
+
+[tool.flakehell.exceptions."tests/modules/**"]
+pyflakes = [
+    # %s imported but unused
+    "-F401",
+]

@@ -2,7 +2,6 @@ from pathlib import Path
 
 from jeeves_core.process_modules import parse_module
 
-
 modules = Path(__file__).parent / 'modules'
 
 
