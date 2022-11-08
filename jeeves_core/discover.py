@@ -1,13 +1,9 @@
-import sys
 from typing import List, Tuple
 
 import more_itertools
 from typer import Typer
 
-if sys.version_info < (3, 10):
-    from importlib_metadata import entry_points  # noqa: WPS433
-else:
-    from importlib.metadata import entry_points  # noqa: WPS433, WPS440
+from jeeves_core.entry_points import entry_points
 
 
 def list_installed_plugins() -> List[Tuple[str, Typer]]:

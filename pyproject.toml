@@ -71,3 +71,14 @@ pyflakes = [
     # %s imported but unused
     "-F401",
 ]
+
+
+[tool.flakehell.exceptions."jeeves_core/entry_points.py"]
+wemake-python-styleguide = [
+  "-WPS433",
+  "-WPS440",
+]
+pyflakes = [
+    # %s imported but unused
+    "-F401",
+]

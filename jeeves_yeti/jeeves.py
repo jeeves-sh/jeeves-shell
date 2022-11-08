@@ -8,8 +8,10 @@ from typer import Exit, Typer
 app = Typer(
     no_args_is_help=True,
     name='Yeti\'s Jeeves',
-    help='Jeeves configuration for the Yeti. Mostly ad-hoc scripts for Python '
-         'projects and stuff.',
+    help=(
+        'Jeeves configuration for the Yeti. Mostly ad-hoc scripts for Python '
+        'projects and stuff.'
+    ),
 )
 
 
