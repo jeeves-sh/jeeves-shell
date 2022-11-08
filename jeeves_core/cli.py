@@ -4,7 +4,7 @@ from typing import Any, Dict
 
 from typer import Typer
 
-from jeeves_core.errors import AppCreationFailed
+from jeeves_core.discover import construct_app
 from jeeves_core.process_modules import parse_module
 
 Tree = Dict[str, Any]    # type: ignore
@@ -48,16 +48,8 @@ def construct_tree() -> Tree:
 
 def app() -> None:
     """Construct and return Typer app."""
-    tree = construct_tree()
-
-    typer_app = app_from_tree(tree)
-
-    try:
-        return typer_app()
-    except RuntimeError as err:
-        raise AppCreationFailed(
-            tree=tree,
-        ) from err
+    typer_app = construct_app()
+    return typer_app()
 
 
 if __name__ == '__main__':

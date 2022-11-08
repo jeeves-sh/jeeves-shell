@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "jeeves-core"
 description = "Pythonic replacement for GNU Make: core"
-version = "1.0.0"
+version = "1.0.3"
 license = "MIT"
 
 authors = []
@@ -29,6 +29,10 @@ classifiers = [
 j = "jeeves_core.cli:app"
 
 
+[tool.poetry.plugins.jeeves]
+yeti = "jeeves_yeti:app"
+
+
 [tool.poetry.dependencies]
 python = ">=3.8,<3.10"
 python-benedict = "^0.24.3"
@@ -36,6 +40,7 @@ boltons = "^21.0.0"
 typer = "^0.7.0"
 documented = "^0.1.1"
 more-itertools = "^9.0.0"
+flake8 = "<4.0.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
