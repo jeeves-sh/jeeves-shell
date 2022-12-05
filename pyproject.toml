@@ -30,7 +30,7 @@ j = "jeeves_core.cli:app"
 
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.10"
+python = ">=3.8,<4.0"
 python-benedict = "^0.24.3"
 boltons = "^21.0.0"
 typer = "^0.7.0"
