@@ -33,11 +33,11 @@ j = "jeeves_core.cli:app"
 python = ">=3.8,<4.0"
 typer = "^0.7.0"
 documented = "^0.1.1"
+more-itertools = "^9.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^0.910"
-flake8 = "<4.0.0"
 
 safety = "^1.10"
 
@@ -47,7 +47,6 @@ pytest-randomly = "^3.8"
 
 m2r2 = "^0.2"
 tomlkit = "^0.7"
-flakehell = "^0.9.0"
 mkdocs = "^1.2.2"
 mkdocstrings = "^0.16.2"
 mkdocs-material = "^7.3.2"
@@ -55,22 +54,17 @@ wemake-python-styleguide = "^0.17.0"
 
 jinja2 = "<3.0"       # Otherwise, `mkdocstrings` will fail
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
-
-[tool.flakehell]
-base = "https://raw.githubusercontent.com/Recall-Masters/standards/main/pyproject.toml"
-
-# https://github.com/flakehell/flakehell/issues/10#issuecomment-822720074
-extended_default_ignore=[]  # add this
+flakeheaven = "^3.2.1"
 
 
-[tool.flakehell.exceptions."tests/modules/**"]
+[tool.flakehaven.exceptions."tests/modules/**"]
 pyflakes = [
     # %s imported but unused
     "-F401",
 ]
 
 
-[tool.flakehell.exceptions."jeeves_core/entry_points.py"]
+[tool.flakeheaven.exceptions."jeeves_core/entry_points.py"]
 wemake-python-styleguide = [
   "-WPS433",
   "-WPS440",

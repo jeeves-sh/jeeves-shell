@@ -3,7 +3,7 @@ SHELL:=/usr/bin/env bash
 .PHONY: lint
 lint:
 	poetry run mypy jeeves_core tests
-	poetry run flakehell lint jeeves_core tests
+	poetry run flakeheaven lint jeeves_core tests
 
 .PHONY: unit
 unit:
