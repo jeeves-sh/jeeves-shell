@@ -16,11 +16,11 @@ markdown_extensions:
 plugins:
   - search
   - mkdocstrings
-  - octadocs
-  - octadocs_adr
-  - macros:
-      modules:
-        - octadocs.macros
+# - octadocs
+# - octadocs_adr
+# - macros:
+#      modules:
+#        - octadocs.macros
 
 theme:
   name: material

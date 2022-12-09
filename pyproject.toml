@@ -31,15 +31,13 @@ j = "jeeves_core.cli:app"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-python-benedict = "^0.24.3"
-boltons = "^21.0.0"
 typer = "^0.7.0"
 documented = "^0.1.1"
-more-itertools = "^9.0.0"
-flake8 = "<4.0.0"
 
-[tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
 mypy = "^0.910"
+flake8 = "<4.0.0"
 
 safety = "^1.10"
 
@@ -54,6 +52,9 @@ mkdocs = "^1.2.2"
 mkdocstrings = "^0.16.2"
 mkdocs-material = "^7.3.2"
 wemake-python-styleguide = "^0.17.0"
+
+jinja2 = "<3.0"       # Otherwise, `mkdocstrings` will fail
+markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
 
 [tool.flakehell]
 base = "https://raw.githubusercontent.com/Recall-Masters/standards/main/pyproject.toml"

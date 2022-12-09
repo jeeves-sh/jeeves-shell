@@ -1,6 +1,0 @@
-- $id: requires-classes
-  title: Requires to use classes
-
-- $id: schema:url
-  rdfs:subPropertyOf:
-    $id: octa:url
