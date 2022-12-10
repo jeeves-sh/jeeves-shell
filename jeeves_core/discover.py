@@ -29,7 +29,7 @@ def _construct_app_from_plugins() -> Typer:   # pragma: nocover
             more_itertools.first(plugins),
         )
 
-    root_app = Typer()
+    root_app = Typer(no_args_is_help=True)
     for name, sub_typer in plugins:
         root_app.add_typer(
             typer_instance=sub_typer,
