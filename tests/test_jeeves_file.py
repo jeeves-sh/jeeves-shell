@@ -57,7 +57,9 @@ def test_single(jeeves_files: Path):
 
 
 def test_multiple(jeeves_files: Path):
-    with environment_from_jeeves_file(jeeves_files / 'multiple.py') as directory:
+    with environment_from_jeeves_file(
+        jeeves_files / 'multiple.py',
+    ) as directory:
         command_names = list(
             map(
                 more_itertools.first,

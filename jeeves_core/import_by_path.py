@@ -18,5 +18,5 @@ def import_by_path(path: Path, module_name: Optional[str] = None):
 
     imported_module = importlib.util.module_from_spec(spec)
     sys.modules[module_name] = imported_module
-    spec.loader.exec_module(imported_module)
+    spec.loader.exec_module(imported_module)   # type: ignore
     return imported_module

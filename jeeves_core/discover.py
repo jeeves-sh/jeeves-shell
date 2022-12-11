@@ -2,18 +2,18 @@ import logging
 import string
 import types
 from pathlib import Path
-from typing import List, Tuple, Iterable, Any, Optional
+from typing import Any, Iterable, List, Tuple
 
 import more_itertools
-from typer import Typer
 
 from jeeves_core.entry_points import entry_points
 from jeeves_core.import_by_path import import_by_path
+from jeeves_core.jeeves import Jeeves
 
 logger = logging.getLogger('jeeves')
 
 
-def list_installed_plugins() -> List[Tuple[str, Typer]]:
+def list_installed_plugins() -> List[Tuple[str, Jeeves]]:
     """Find installed plugins."""
     return [
         (entry_point.name, entry_point.load())
@@ -21,15 +21,14 @@ def list_installed_plugins() -> List[Tuple[str, Typer]]:
     ]
 
 
-def _construct_app_from_plugins() -> Typer:   # pragma: nocover
+def _construct_app_from_plugins() -> Jeeves:   # pragma: nocover
     plugins = list_installed_plugins()
 
     if len(plugins) == 1:
-        return more_itertools.last(
-            more_itertools.first(plugins),
-        )
+        _name, plugin = more_itertools.first(plugins)
+        return plugin
 
-    root_app = Typer(no_args_is_help=True)
+    root_app = Jeeves(no_args_is_help=True)
     for name, sub_typer in plugins:
         root_app.add_typer(
             typer_instance=sub_typer,
@@ -50,7 +49,7 @@ def _is_name_suitable(name: str):
 
 def retrieve_commands_from_jeeves_file(   # type: ignore
     directory: Path,
-    jeeves_file_name: Optional[str] = 'jeeves.py',
+    jeeves_file_name: str = 'jeeves.py',
 ) -> Iterable[Tuple[str, Any]]:
     try:
         jeeves_module = import_by_path(path=directory / jeeves_file_name)
@@ -64,16 +63,25 @@ def retrieve_commands_from_jeeves_file(   # type: ignore
 
 
 def _augment_app_with_jeeves_file(
-    app: Typer,
+    app: Jeeves,
     path: Path,
-) -> Typer:      # pragma: nocover
+) -> Jeeves:      # pragma: nocover
     for name, command in retrieve_commands_from_jeeves_file(path):
         app.command()(command)
 
     return app
 
 
-def construct_app() -> Typer:  # pragma: nocover
+def _configure_callback(app: Jeeves) -> Jeeves:
+    def _root_app_callback(debug: bool = False):
+        app.debug = debug
+
+    app.callback()(_root_app_callback)
+    return app
+
+
+def construct_app() -> Jeeves:  # pragma: nocover
     """Discover plugins and construct a Typer app."""
     app = _construct_app_from_plugins()
+    app = _configure_callback(app)
     return _augment_app_with_jeeves_file(app=app, path=Path.cwd())

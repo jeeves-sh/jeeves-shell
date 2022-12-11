@@ -46,7 +46,6 @@ pytest-cov = "^2.12"
 pytest-randomly = "^3.8"
 
 m2r2 = "^0.2"
-tomlkit = "^0.7"
 mkdocs = "^1.2.2"
 mkdocstrings = "^0.16.2"
 mkdocs-material = "^7.3.2"
@@ -56,6 +55,8 @@ jinja2 = "<3.0"       # Otherwise, `mkdocstrings` will fail
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
 flakeheaven = "^3.2.1"
 rich = "^12.6.0"
+importlib-metadata = "<5.0"
+tomlkit = "^0.11.6"
 
 
 [tool.flakehaven.exceptions."tests/modules/**"]
@@ -70,6 +71,13 @@ wemake-python-styleguide = [
   "-WPS433",
   "-WPS440",
 ]
+pyflakes = [
+    # %s imported but unused
+    "-F401",
+]
+
+
+[tool.flakeheaven.exceptions."jeeves_core/__init__.py"]
 pyflakes = [
     # %s imported but unused
     "-F401",
