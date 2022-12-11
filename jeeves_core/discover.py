@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Iterable, List, Tuple
 
 import more_itertools
+import typer
 
 from jeeves_core.entry_points import entry_points
 from jeeves_core.import_by_path import import_by_path
@@ -73,7 +74,9 @@ def _augment_app_with_jeeves_file(
 
 
 def _configure_callback(app: Jeeves) -> Jeeves:
-    def _root_app_callback(debug: bool = False):
+    def _root_app_callback(
+        debug: bool = typer.Option(False, help='Enable debug mode.'),
+    ):
         app.debug = debug
 
     app.callback()(_root_app_callback)
