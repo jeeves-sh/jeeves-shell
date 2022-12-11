@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from jeeves_core.import_by_path import import_by_path
+from jeeves_shell.import_by_path import import_by_path
 
 
 def test_empty_module_name():

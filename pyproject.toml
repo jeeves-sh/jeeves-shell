@@ -4,16 +4,16 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry]
-name = "jeeves-core"
-description = "Pythonic replacement for GNU Make: core"
-version = "1.0.6"
+name = "jeeves-shell"
+description = "Pythonic replacement for GNU Make"
+version = "2.0.0"
 license = "MIT"
 
 authors = []
 
 readme = "README.md"
 
-repository = "https://github.com/jeeves-sh/jeeves-core"
+repository = "https://github.com/jeeves-sh/jeeves-shell"
 
 keywords = []
 
@@ -26,7 +26,7 @@ classifiers = [
 
 
 [tool.poetry.scripts]
-j = "jeeves_core.cli:app"
+j = "jeeves_shell.cli:app"
 
 
 [tool.poetry.dependencies]
@@ -66,7 +66,7 @@ pyflakes = [
 ]
 
 
-[tool.flakeheaven.exceptions."jeeves_core/entry_points.py"]
+[tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]
 wemake-python-styleguide = [
   "-WPS433",
   "-WPS440",
@@ -77,7 +77,7 @@ pyflakes = [
 ]
 
 
-[tool.flakeheaven.exceptions."jeeves_core/__init__.py"]
+[tool.flakeheaven.exceptions."jeeves_shell/__init__.py"]
 pyflakes = [
     # %s imported but unused
     "-F401",

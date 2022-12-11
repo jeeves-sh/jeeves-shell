@@ -46,7 +46,7 @@ We use `mypy` to run type checks on our code.
 To use it:
 
 ```bash
-mypy jeeves_core tests/**/*.py
+j lint
 ```
 
 This step is mandatory during the CI.

@@ -2,9 +2,9 @@ import logging
 import sys
 from pathlib import Path
 
-from jeeves_core.discover import construct_app
-from jeeves_core.errors import NoCommandsFound
-from jeeves_core.jeeves import Jeeves
+from jeeves_shell.discover import construct_app
+from jeeves_shell.errors import NoCommandsFound
+from jeeves_shell.jeeves import Jeeves
 
 logger = logging.getLogger('jeeves')
 

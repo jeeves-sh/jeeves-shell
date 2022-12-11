@@ -7,9 +7,9 @@ from typing import Any, Iterable, List, Tuple
 import more_itertools
 import typer
 
-from jeeves_core.entry_points import entry_points
-from jeeves_core.import_by_path import import_by_path
-from jeeves_core.jeeves import Jeeves
+from jeeves_shell.entry_points import entry_points
+from jeeves_shell.import_by_path import import_by_path
+from jeeves_shell.jeeves import Jeeves
 
 logger = logging.getLogger('jeeves')
 

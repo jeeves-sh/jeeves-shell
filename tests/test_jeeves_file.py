@@ -5,7 +5,7 @@ from pathlib import Path
 import more_itertools
 import pytest
 
-from jeeves_core.discover import retrieve_commands_from_jeeves_file
+from jeeves_shell.discover import retrieve_commands_from_jeeves_file
 from tests.base import environment_from_jeeves_file
 
 
