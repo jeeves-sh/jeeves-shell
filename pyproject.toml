@@ -57,13 +57,7 @@ flakeheaven = "^3.2.1"
 rich = "^12.6.0"
 importlib-metadata = "<5.0"
 tomlkit = "^0.11.6"
-
-
-[tool.flakehaven.exceptions."tests/modules/**"]
-pyflakes = [
-    # %s imported but unused
-    "-F401",
-]
+plumbum = "^1.8.0"
 
 
 [tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]

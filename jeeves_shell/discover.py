@@ -2,7 +2,7 @@ import logging
 import string
 import types
 from pathlib import Path
-from typing import Any, Iterable, List, Tuple
+from typing import Any, Iterable, List, Tuple, Optional
 
 import more_itertools
 import typer
@@ -76,15 +76,18 @@ def _augment_app_with_jeeves_file(
 def _configure_callback(app: Jeeves) -> Jeeves:
     def _root_app_callback(
         debug: bool = typer.Option(False, help='Enable debug mode.'),
-    ):
+    ):   # pragma: nocover
         app.debug = debug
 
     app.callback()(_root_app_callback)
     return app
 
 
-def construct_app() -> Jeeves:  # pragma: nocover
+def construct_app(current_directory: Optional[Path] = None) -> Jeeves:
     """Discover plugins and construct a Typer app."""
+    if current_directory is None:       # pragma: no cover
+        current_directory = Path.cwd()
+
     app = _construct_app_from_plugins()
     app = _configure_callback(app)
-    return _augment_app_with_jeeves_file(app=app, path=Path.cwd())
+    return _augment_app_with_jeeves_file(app=app, path=current_directory)

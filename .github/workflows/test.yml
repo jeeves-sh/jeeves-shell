@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.6', '3.7', '3.8', '3.9']
+        python-version: ['3.8', '3.9', '3.10', '3.11']
 
     steps:
     - uses: actions/checkout@v2
@@ -23,8 +23,7 @@ jobs:
 
     - name: Install poetry
       run: |
-        curl -sSL \
-          "https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py" | python
+        pip install poetry
 
         # Adding `poetry` to `$PATH`:
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
@@ -37,15 +36,15 @@ jobs:
     - name: Install dependencies
       run: |
         poetry config virtualenvs.in-project true
+        poetry run pip install -U pip
         poetry install
 
     - name: Run checks
       run: |
-        make test
+        poetry run j test
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
         file: ./coverage.xml
-

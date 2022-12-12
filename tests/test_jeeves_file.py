@@ -9,11 +9,6 @@ from jeeves_shell.discover import retrieve_commands_from_jeeves_file
 from tests.base import environment_from_jeeves_file
 
 
-@pytest.fixture(scope='session')
-def jeeves_files() -> Path:
-    return Path(__file__).parent / 'jeeves_files'
-
-
 @pytest.fixture()
 def random_string() -> str:
     return ''.join(
