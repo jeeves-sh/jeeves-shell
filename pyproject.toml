@@ -59,13 +59,6 @@ importlib-metadata = "<5.0"
 tomlkit = "^0.11.6"
 
 
-[tool.flakehaven.exceptions."tests/modules/**"]
-pyflakes = [
-    # %s imported but unused
-    "-F401",
-]
-
-
 [tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]
 wemake-python-styleguide = [
   "-WPS433",
