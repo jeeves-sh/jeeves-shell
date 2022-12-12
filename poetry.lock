@@ -654,6 +654,31 @@ plugins = ["setuptools"]
 requirements-deprecated-finder = ["pip-api", "pipreqs"]
 
 [[package]]
+name = "jeeves-yeti-pyproject"
+version = "0.1.0"
+description = "Opinionated Jeeves plugin for Python projects."
+category = "dev"
+optional = false
+python-versions = ">=3.8,<4.0"
+files = [
+    {file = "jeeves_yeti_pyproject-0.1.0-py3-none-any.whl", hash = "sha256:8380078c01eecbe59ce52c654e21123436ab247326721c509d88111bfbd0ae78"},
+    {file = "jeeves_yeti_pyproject-0.1.0.tar.gz", hash = "sha256:5419b5ee8f474393c0a14742c3e75e763fd109e49f406f847ef7da084049bf34"},
+]
+
+[package.dependencies]
+flakeheaven = ">=3.2.1,<4.0.0"
+jeeves-shell = ">=2.0.1,<3.0.0"
+mypy = ">=0.910,<0.911"
+plumbum = ">=1.8.0,<2.0.0"
+pytest = ">=6.2,<7.0"
+pytest-cov = ">=2.12,<3.0"
+pytest-randomly = ">=3.8,<4.0"
+rich = ">=12.6.0,<13.0.0"
+safety = ">=1.10,<2.0"
+tomlkit = ">=0.11.6,<0.12.0"
+wemake-python-styleguide = ">=0.17.0,<0.18.0"
+
+[[package]]
 name = "jinja2"
 version = "2.11.3"
 description = "A very fast and expressive template engine."
@@ -1651,4 +1676,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4.0"
-content-hash = "8f77e4d2d0af4ecff2f0fa80ec8d3983a7d6fa1e48300608e7a59861be60e1c7"
+content-hash = "74e6e7c31ce1271f1f79c85e21a2408ee208eb604720db8c6ac29c420434c259"

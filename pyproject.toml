@@ -37,28 +37,15 @@ more-itertools = "^9.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^0.910"
-
-safety = "^1.10"
-
-pytest = "^6.2"
-pytest-cov = "^2.12"
-pytest-randomly = "^3.8"
-
 m2r2 = "^0.2"
 mkdocs = "^1.2.2"
 mkdocstrings = "^0.16.2"
 mkdocs-material = "^7.3.2"
-wemake-python-styleguide = "^0.17.0"
 
 jinja2 = "<3.0"       # Otherwise, `mkdocstrings` will fail
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
-flakeheaven = "^3.2.1"
-rich = "^12.6.0"
 importlib-metadata = "<5.0"
-tomlkit = "^0.11.6"
-plumbum = "^1.8.0"
-
+jeeves-yeti-pyproject = "^0.1.0"
 
 [tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]
 wemake-python-styleguide = [
