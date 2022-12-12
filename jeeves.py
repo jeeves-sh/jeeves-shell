@@ -9,16 +9,25 @@ from plumbum.cmd import poetry, isort
 run = poetry['run']
 kwargs = {'stdout': sys.stdout, 'stderr': sys.stderr}
 
+LINE_LENGTH = 80
 
-def _python_directories() -> List[Path]:
+
+def _directories_with_a_file_in_them(pattern: str) -> List[Path]:
     return [
         sub_directory
         for sub_directory in Path.cwd().iterdir()
         if sub_directory.is_dir()
-        and more_itertools.first_true(
-            sub_directory.glob('*.py'),
+           and more_itertools.first_true(
+            sub_directory.glob(pattern),
         )
     ]
+
+def _python_directories() -> List[Path]:
+    return _directories_with_a_file_in_them('*.py')
+
+
+def _python_packages() -> List[Path]:
+    return _directories_with_a_file_in_them('__init__.py')
 
 
 def _construct_mypy_flags() -> Iterable[str]:
@@ -64,7 +73,7 @@ def _construct_flake8_args() -> Iterable[str]:
 
     # Plugins
     yield '--max-complexity', 6
-    yield '--max-line-length', 80
+    yield '--max-line-length', LINE_LENGTH
 
     yield '--i-control-code'
 
@@ -100,11 +109,47 @@ def safety():
     run('safety', 'check', '--full-report', **kwargs)
 
 
+def _construct_pytest_args() -> Iterable[str]:
+    yield '--strict-markers'
+    yield '--strict-config'
+    yield '--tb=short'
+    yield '--doctest-modules'
+    yield '--cov={}'.format(
+        ','.join(
+            map(str, _python_packages()),
+        )
+    )
+    yield '--cov-report=term:skip-covered'
+    yield '--cov-report=html'
+    yield '--cov-report=xml'
+    yield '--cov-branch'
+    yield '--cov-fail-under=100'
+
+
 def test():
     """Unit test code."""
-    run('pytest', **kwargs)
+    run('pytest', *_construct_pytest_args(), **kwargs)
+
+
+def _construct_isort_args() -> Iterable[str]:
+    """
+    Isort configuration.
+
+    https://github.com/timothycrosley/isort/wiki/isort-Settings
+    See https://github.com/timothycrosley/isort#multi-line-output-modes
+
+    Source: wemake-python-styleguide.
+    """
+    yield '--trailing-comma'
+    yield '--use-parentheses'
+    yield '--multi-line', 'VERTICAL_HANGING_INDENT'
+    yield '--line-length', LINE_LENGTH
 
 
 def fmt():
     """Auto format code."""
-    isort(*_python_directories(), **kwargs)
+    isort(
+        *_python_directories(),
+        *_construct_isort_args(),
+        **kwargs,
+    )

@@ -2,7 +2,7 @@ import logging
 import string
 import types
 from pathlib import Path
-from typing import Any, Iterable, List, Tuple, Optional
+from typing import Any, Iterable, List, Optional, Tuple
 
 import more_itertools
 import typer
