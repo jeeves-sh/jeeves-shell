@@ -1,3 +1,4 @@
+import itertools
 import sys
 from pathlib import Path
 from typing import List, Iterable
@@ -45,6 +46,29 @@ def _construct_mypy_flags() -> Iterable[str]:
     yield '--warn-unreachable'
 
 
+def _construct_flake8_args() -> Iterable[str]:
+    """
+    Base flake8 configuration.
+
+    https://flake8.pycqa.org/en/latest/user/configuration.html
+    Source: wemake-python-styleguide.
+    """
+    yield '--format', 'wemake'
+
+    yield '--show-source'
+    yield '--doctests'
+
+    # Darglint: https://github.com/terrencepreilly/darglint
+    yield '--strictness', 'long'
+    yield '--docstring-style', 'numpy'
+
+    # Plugins
+    yield '--max-complexity', 6
+    yield '--max-line-length', 80
+
+    yield '--i-control-code'
+
+
 def lint():
     """Lint code."""
     directories = _python_directories()
@@ -56,7 +80,14 @@ def lint():
         **kwargs,
     )
 
-    run('flakeheaven', 'lint', *directories, **kwargs)
+    run(
+        'flakeheaven', 'lint',
+        *directories,
+        *itertools.chain(
+            _construct_flake8_args(),
+        ),
+        **kwargs,
+    )
 
     poetry('check', **kwargs)
 
