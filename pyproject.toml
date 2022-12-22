@@ -46,6 +46,8 @@ jinja2 = "<3.0"       # Otherwise, `mkdocstrings` will fail
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
 importlib-metadata = "<5.0"
 jeeves-yeti-pyproject = "^0.1.0"
+mkdocs-macros-plugin = "^0.7.0"
+dominate = "^2.7.0"
 
 [tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]
 wemake-python-styleguide = [

@@ -18,9 +18,9 @@ plugins:
   - mkdocstrings
 # - octadocs
 # - octadocs_adr
-# - macros:
-#      modules:
-#        - octadocs.macros
+  - macros:
+      modules:
+        - macros
 
 theme:
   name: material

@@ -1,4 +1,5 @@
 import logging
+import os
 import string
 import types
 from pathlib import Path
@@ -23,7 +24,10 @@ def list_installed_plugins() -> List[Tuple[str, Jeeves]]:
 
 
 def _construct_app_from_plugins() -> Jeeves:   # pragma: nocover
-    plugins = list_installed_plugins()
+    if os.getenv('JEEVES_DISABLE_PLUGINS'):
+        plugins = []
+    else:
+        plugins = list_installed_plugins()
 
     if len(plugins) == 1:
         _name, plugin = more_itertools.first(plugins)
