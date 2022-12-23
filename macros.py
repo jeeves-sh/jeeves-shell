@@ -1,5 +1,6 @@
 """MkDocs macros for the documentation site."""
 import functools
+import operator
 import tempfile
 from pathlib import Path
 from typing import List, Optional, Dict
@@ -24,22 +25,21 @@ PYTHON_TEMPLATE = '''
 
 
 JEEVES_TEMPLATE = '''
-```python title="{path}"
-{code}
-```
-
-{annotations}
-
-⇒
-``` title="{cmd}"
+``` title="↦ <code>{cmd}</code>"
 {stdout}
 ```
 '''
 
 
 TERMINAL_TEMPLATE = '''
-``` title="{title}"
+``` title="↦ <code>{title}</code>"
 {output}
+```
+'''
+
+CODE_TEMPLATE = '''
+```{language} title="{title}"
+{code}
 ```
 '''
 
@@ -50,6 +50,22 @@ def format_annotations(annotations: List[str]) -> str:
     return '\n\n'.join(
         f'{number}. {annotation}'
         for number, annotation in enumerated_annotations
+    )
+
+
+
+def code(
+    path: str,
+    docs_dir: Path,
+    language: Optional[str] = None,
+    title: Optional[str] = None,
+):
+    content = (docs_dir / path).read_text()
+
+    return CODE_TEMPLATE.format(
+        language=language,
+        code=content,
+        title=title or path,
     )
 
 
@@ -106,14 +122,11 @@ def j(
 
         (directory / 'jeeves.py').write_text(code)
 
-        _, stdout, stderr = jeeves.with_cwd(
+        _, stdout, stderr = operator.getitem(jeeves, args).with_cwd(
             directory,
         ).with_env(
             **(environment or {}),
-        ).run(
-            *args,
-            retcode=None,
-        )
+        ).run(retcode=None)
 
     cmd = 'j'
     if args:
@@ -166,6 +179,14 @@ def define_env(env: MacrosPlugin):
             docs_dir=Path(env.conf['docs_dir']),
         ),
         name='j',
+    )
+
+    env.macro(
+        functools.partial(
+            code,
+            docs_dir=Path(env.conf['docs_dir']),
+        ),
+        name='code',
     )
 
     env.macro(terminal)
