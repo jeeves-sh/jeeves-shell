@@ -1,6 +1,6 @@
 import sys
 
-from plumbum.cmd import mkdocs
+from sh import mkdocs
 
 
 def serve():

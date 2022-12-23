@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "jeeves-shell"
 description = "Pythonic replacement for GNU Make"
-version = "2.0.1"
+version = "2.1.0"
 license = "MIT"
 
 authors = []
@@ -45,9 +45,26 @@ mkdocs-material = "^7.3.2"
 jinja2 = "<3.0"       # Otherwise, `mkdocstrings` will fail
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
 importlib-metadata = "<5.0"
-jeeves-yeti-pyproject = "^0.1.0"
+jeeves-yeti-pyproject = "^0.2.0"
 mkdocs-macros-plugin = "^0.7.0"
 dominate = "^2.7.0"
+
+[tool.flakeheaven.exceptions."jeeves_shell/jeeves.py"]
+wemake-python-styleguide = [
+  "-WPS115",
+  "-WPS600",
+]
+
+[tool.flakeheaven.exceptions."jeeves_shell/discover.py"]
+wemake-python-styleguide = [
+  "-WPS404",
+]
+flake8-bugbear = [
+  # Do not perform function calls in argument defaults
+  # These are Typer arguments.
+  "-B008",
+]
+
 
 [tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]
 wemake-python-styleguide = [

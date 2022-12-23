@@ -10,7 +10,7 @@ import typer
 
 from jeeves_shell.entry_points import entry_points
 from jeeves_shell.import_by_path import import_by_path
-from jeeves_shell.jeeves import Jeeves
+from jeeves_shell.jeeves import Jeeves, LogLevel
 
 logger = logging.getLogger('jeeves')
 
@@ -78,10 +78,20 @@ def _augment_app_with_jeeves_file(
 
 
 def _configure_callback(app: Jeeves) -> Jeeves:
-    def _root_app_callback(
-        debug: bool = typer.Option(False, help='Enable debug mode.'),
+    def _root_app_callback(   # noqa: WPS430
+        log_level: LogLevel = typer.Option(
+            LogLevel.ERROR,
+            help='Logging level.',
+        ),
     ):   # pragma: nocover
-        app.debug = debug
+        app.log_level = log_level
+        logging.basicConfig(
+            level={
+                LogLevel.ERROR: logging.ERROR,
+                LogLevel.INFO: logging.INFO,
+                LogLevel.DEBUG: logging.DEBUG,
+            }[log_level],
+        )
 
     app.callback()(_root_app_callback)
     return app

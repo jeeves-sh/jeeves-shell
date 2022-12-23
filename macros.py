@@ -3,13 +3,14 @@ import functools
 import operator
 import tempfile
 from pathlib import Path
-from typing import List, Optional, Dict
+from typing import Dict, List, Optional
 
 from mkdocs_macros.plugin import MacrosPlugin
-from plumbum.cmd import python, j as jeeves, bash
+from sh import bash
+from sh import j as jeeves
+from sh import python
 
-
-PYTHON_TEMPLATE = '''
+PYTHON_TEMPLATE = """
 ```python title="{path}"
 {code}
 ```
@@ -21,30 +22,31 @@ PYTHON_TEMPLATE = '''
 {stderr}
 {stdout}
 ```
-'''
+"""
 
 
-JEEVES_TEMPLATE = '''
+JEEVES_TEMPLATE = """
 ``` title="↦ <code>{cmd}</code>"
 {stdout}
 ```
-'''
+"""
 
 
-TERMINAL_TEMPLATE = '''
+TERMINAL_TEMPLATE = """
 ``` title="↦ <code>{title}</code>"
 {output}
 ```
-'''
+"""
 
-CODE_TEMPLATE = '''
+CODE_TEMPLATE = """
 ```{language} title="{title}"
 {code}
 ```
-'''
+"""
 
 
 def format_annotations(annotations: List[str]) -> str:
+    """Format annotations for mkdocs-material to accept them."""
     enumerated_annotations = enumerate(annotations, start=1)
 
     return '\n\n'.join(

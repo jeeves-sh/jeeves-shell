@@ -4,7 +4,7 @@ from pathlib import Path
 
 from jeeves_shell.discover import construct_app
 from jeeves_shell.errors import NoCommandsFound
-from jeeves_shell.jeeves import Jeeves
+from jeeves_shell.jeeves import Jeeves, LogLevel
 
 logger = logging.getLogger('jeeves')
 
@@ -24,12 +24,12 @@ def app() -> None:    # pragma: no cover
         return execute_app(typer_app)
 
     except Exception as err:
-        if typer_app.debug:
-            raise
-
-        else:
+        if typer_app.log_level == LogLevel.ERROR:
             logger.error(err)
             sys.exit(1)
+
+        else:
+            raise
 
 
 if __name__ == '__main__':    # pragma: no cover
