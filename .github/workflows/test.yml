@@ -39,9 +39,11 @@ jobs:
         poetry run pip install -U pip
         poetry install
 
-    - name: Run checks
-      run: |
-        poetry run j test
+    - name: Lint
+      run: poetry run j lint
+
+    - name: Test
+      run: poetry run j test
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov

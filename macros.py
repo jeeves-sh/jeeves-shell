@@ -42,6 +42,8 @@ CODE_TEMPLATE = """
 ```{language} title="{title}"
 {code}
 ```
+
+{annotations}
 """
 
 
@@ -61,13 +63,15 @@ def code(
     docs_dir: Path,
     language: Optional[str] = None,
     title: Optional[str] = None,
+    annotations: Optional[List[str]] = None,
 ):
-    content = (docs_dir / path).read_text()
+    code_content = (docs_dir / path).read_text()
 
     return CODE_TEMPLATE.format(
         language=language,
-        code=content,
+        code=code_content,
         title=title or path,
+        annotations=format_annotations(annotations or []),
     )
 
 
@@ -124,11 +128,12 @@ def j(
 
         (directory / 'jeeves.py').write_text(code)
 
-        _, stdout, stderr = operator.getitem(jeeves, args).with_cwd(
-            directory,
-        ).with_env(
-            **(environment or {}),
-        ).run(retcode=None)
+        response = jeeves(
+            *args,
+            _cwd=directory,
+            _env=environment,
+            _tty_out=False,
+        )
 
     cmd = 'j'
     if args:
@@ -138,8 +143,8 @@ def j(
     return JEEVES_TEMPLATE.format(
         path=path,
         code=code,
-        stdout=stdout,
-        stderr=stderr,
+        stdout=response.stdout.decode(),
+        stderr=response.stderr.decode(),
         annotations=format_annotations(annotations),
         cmd=cmd,
     )

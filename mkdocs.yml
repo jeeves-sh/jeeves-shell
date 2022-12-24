@@ -9,6 +9,7 @@ markdown_extensions:
   - codehilite
   - attr_list
   - pymdownx.tabbed
+  - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
@@ -26,3 +27,5 @@ theme:
   features:
     - header.autohide
     - navigation.indexes
+    - content.code.annotate
+
