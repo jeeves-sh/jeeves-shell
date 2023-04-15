@@ -61,13 +61,16 @@ def retrieve_commands_from_jeeves_file(   # type: ignore
     directory: Path,
     jeeves_file_name: str = 'jeeves.py',
 ) -> Iterable[Tuple[str, Any]]:
-    try:
-        jeeves_module = import_by_path(path=directory / jeeves_file_name)
-    except FileNotFoundError as err:
-        logger.debug('File not found: %s', err.filename)
+    path = directory / jeeves_file_name
+    if not path.exists():
         return
-    except RuntimeError as err:
-        logger.debug('Error while building spec: %s', err)
+
+    try:
+        jeeves_module = import_by_path(
+            path=directory,
+        )
+    except ImportError as err:
+        logger.debug('Cannot import: %s', err)
         return
 
     for name, command in vars(jeeves_module).items():  # noqa: WPS421

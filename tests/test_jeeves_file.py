@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 import more_itertools
@@ -5,7 +6,16 @@ import pytest
 from typer import Typer
 
 from jeeves_shell.discover import retrieve_commands_from_jeeves_file
-from tests.base import environment_from_jeeves_file
+from tests.base import (
+    environment_from_jeeves_file,
+    environment_from_jeeves_package,
+)
+
+
+@pytest.fixture(autouse=True)
+def reload_jeeves():
+    yield
+    sys.modules.pop('jeeves', None)
 
 
 def test_missing_directory(jeeves_files: Path, random_string: str):
@@ -74,3 +84,20 @@ def test_syntax_error(jeeves_files: Path):
     ) as directory:
         with pytest.raises(SyntaxError):
             list(retrieve_commands_from_jeeves_file(directory))
+
+
+def test_package(jeeves_files: Path):
+    with environment_from_jeeves_package(
+        jeeves_files / 'package',
+    ) as directory:
+        command_names = set(
+            map(
+                more_itertools.first,
+                retrieve_commands_from_jeeves_file(
+                    directory,
+                    'jeeves',
+                ),
+            ),
+        )
+
+        assert command_names == {'lint', 'test'}
