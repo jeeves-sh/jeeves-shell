@@ -85,9 +85,9 @@ def _augment_app_with_jeeves_file(
     path: Path,
 ) -> Jeeves:      # pragma: nocover
     commands = retrieve_commands_from_jeeves_file(path)
-    for _name, command in commands:
+    for name, command in commands:
         if _is_typer(command):
-            app.add_typer(command)
+            app.add_typer(typer_instance=command, name=name)
         else:
             app.command()(command)
 

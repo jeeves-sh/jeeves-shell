@@ -1,5 +1,3 @@
-import sys
-
 from sh import mkdocs
 
 
