@@ -1,31 +1,22 @@
-import random
-import string
 from pathlib import Path
 
 import more_itertools
 import pytest
+from typer import Typer
 
 from jeeves_shell.discover import retrieve_commands_from_jeeves_file
 from tests.base import environment_from_jeeves_file
 
 
-@pytest.fixture()
-def random_string() -> str:
-    return ''.join(
-        random.sample(
-            string.ascii_lowercase,
-            10,
+def test_missing_directory(jeeves_files: Path, random_string: str):
+    assert not list(
+        retrieve_commands_from_jeeves_file(
+            Path(f'/tmp/random_{random_string}'),   # noqa: S108
         ),
     )
 
 
-def test_missing_directory(jeeves_files: Path, random_string: str):
-    assert not list(retrieve_commands_from_jeeves_file(
-        Path(f'/tmp/random_{random_string}')
-    ))
-
-
-def test_missing_file(jeeves_files: Path):
+def test_missing_file(jeeves_files: Path, random_string: str):
     with environment_from_jeeves_file(jeeves_files / 'empty.py') as directory:
         names_and_commands = list(
             retrieve_commands_from_jeeves_file(
@@ -51,6 +42,18 @@ def test_single(jeeves_files: Path):
         assert name == 'foo'
 
 
+def test_sub_app(jeeves_files: Path):
+    with environment_from_jeeves_file(jeeves_files / 'sub_app.py') as directory:
+        command_by_name = dict(retrieve_commands_from_jeeves_file(directory))
+
+        assert set(command_by_name.keys()) == {'build', 'lint'}
+
+        sub_command: Typer = command_by_name['build']
+        assert {
+            command.name for command in sub_command.registered_commands
+        } == {'all', 'python', 'rust'}
+
+
 def test_multiple(jeeves_files: Path):
     with environment_from_jeeves_file(
         jeeves_files / 'multiple.py',
@@ -59,7 +62,7 @@ def test_multiple(jeeves_files: Path):
             map(
                 more_itertools.first,
                 retrieve_commands_from_jeeves_file(directory),
-            )
+            ),
         )
 
     assert command_names == ['foo', 'boo']

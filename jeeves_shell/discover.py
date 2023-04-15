@@ -47,6 +47,10 @@ def _is_function(python_object) -> bool:
     return isinstance(python_object, types.FunctionType)
 
 
+def _is_typer(python_object) -> bool:
+    return isinstance(python_object, typer.Typer)
+
+
 def _is_name_suitable(name: str):
     first_character = more_itertools.first(name)
     return first_character not in f'{string.ascii_uppercase}_'
@@ -63,7 +67,10 @@ def retrieve_commands_from_jeeves_file(   # type: ignore
         return
 
     for name, command in vars(jeeves_module).items():  # noqa: WPS421
-        if _is_name_suitable(name) and _is_function(command):
+        if not _is_name_suitable(name):
+            continue
+
+        if _is_function(command) or _is_typer(command):
             yield name, command
 
 
@@ -71,8 +78,11 @@ def _augment_app_with_jeeves_file(
     app: Jeeves,
     path: Path,
 ) -> Jeeves:      # pragma: nocover
-    for name, command in retrieve_commands_from_jeeves_file(path):
-        app.command()(command)
+    for _name, command in retrieve_commands_from_jeeves_file(path):
+        if _is_typer(command):
+            app.add_typer(command)
+        else:
+            app.command()(command)
 
     return app
 
