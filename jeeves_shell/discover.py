@@ -1,3 +1,4 @@
+import itertools
 import logging
 import os
 import string
@@ -65,6 +66,9 @@ def retrieve_commands_from_jeeves_file(   # type: ignore
     except FileNotFoundError as err:
         logger.debug('File not found: %s', err.filename)
         return
+    except RuntimeError as err:
+        logger.debug('Error while building spec: %s', err)
+        return
 
     for name, command in vars(jeeves_module).items():  # noqa: WPS421
         if not _is_name_suitable(name):
@@ -78,7 +82,11 @@ def _augment_app_with_jeeves_file(
     app: Jeeves,
     path: Path,
 ) -> Jeeves:      # pragma: nocover
-    for _name, command in retrieve_commands_from_jeeves_file(path):
+    commands = itertools.chain(
+        retrieve_commands_from_jeeves_file(path, jeeves_file_name='jeeves.py'),
+        retrieve_commands_from_jeeves_file(path, jeeves_file_name='jeeves'),
+    )
+    for _name, command in commands:
         if _is_typer(command):
             app.add_typer(command)
         else:
