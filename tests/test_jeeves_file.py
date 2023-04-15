@@ -29,10 +29,7 @@ def test_missing_directory(jeeves_files: Path, random_string: str):
 def test_missing_file(jeeves_files: Path, random_string: str):
     with environment_from_jeeves_file(jeeves_files / 'empty.py') as directory:
         names_and_commands = list(
-            retrieve_commands_from_jeeves_file(
-                directory=directory,
-                jeeves_file_name=f'jeeves_{random_string}.py',
-            ),
+            retrieve_commands_from_jeeves_file(directory=directory),
         )
         assert not list(names_and_commands)
 
@@ -93,10 +90,7 @@ def test_package(jeeves_files: Path):
         command_names = set(
             map(
                 more_itertools.first,
-                retrieve_commands_from_jeeves_file(
-                    directory,
-                    'jeeves',
-                ),
+                retrieve_commands_from_jeeves_file(directory),
             ),
         )
 

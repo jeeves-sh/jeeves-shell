@@ -57,12 +57,11 @@ def _is_name_suitable(name: str):
     return first_character not in f'{string.ascii_uppercase}_'
 
 
-def retrieve_commands_from_jeeves_file(   # type: ignore
+def retrieve_commands_from_jeeves_file(   # type: ignore   # noqa: C901
     directory: Path,
-    jeeves_file_name: str = 'jeeves.py',
 ) -> Iterable[Tuple[str, Any]]:
-    path = directory / jeeves_file_name
-    if not path.exists():
+    """Convert directory path → sequence of commands & subcommands."""
+    if not directory.exists():
         return
 
     try:
@@ -85,10 +84,7 @@ def _augment_app_with_jeeves_file(
     app: Jeeves,
     path: Path,
 ) -> Jeeves:      # pragma: nocover
-    commands = itertools.chain(
-        retrieve_commands_from_jeeves_file(path, jeeves_file_name='jeeves.py'),
-        retrieve_commands_from_jeeves_file(path, jeeves_file_name='jeeves'),
-    )
+    commands = retrieve_commands_from_jeeves_file(path)
     for _name, command in commands:
         if _is_typer(command):
             app.add_typer(command)
