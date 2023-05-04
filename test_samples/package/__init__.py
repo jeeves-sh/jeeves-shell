@@ -1,4 +1,4 @@
-from jeeves.linter import lint
+from package.linter import lint
 
 
 def test():
