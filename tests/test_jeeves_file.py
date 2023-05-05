@@ -1,4 +1,5 @@
 import sys
+import tempfile
 from pathlib import Path
 
 import more_itertools
@@ -73,6 +74,11 @@ def test_multiple(jeeves_files: Path):
         )
 
     assert command_names == ['foo', 'boo']
+
+
+def test_import_error(jeeves_files: Path):
+    with tempfile.TemporaryDirectory() as raw_directory:
+        assert not list(retrieve_commands_from_jeeves_file(Path(raw_directory)))
 
 
 def test_syntax_error(jeeves_files: Path):
