@@ -1,8 +1,18 @@
 import random
 import string
+import sys
 from pathlib import Path
 
 import pytest
+
+
+@pytest.fixture(autouse=True)
+def wipe_jeeves_module_from_cache() -> bool:
+    try:
+        sys.modules.__delitem__('jeeves')   # noqa: WPS609
+        return True
+    except KeyError:
+        return False
 
 
 @pytest.fixture(scope='session')

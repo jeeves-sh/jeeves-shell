@@ -77,9 +77,6 @@ def test_multiple(jeeves_files: Path):
 
 
 def test_import_error(jeeves_files: Path):
-    if sys.modules.get('jeeves'):
-        del sys.modules['jeeves']   # noqa: WPS420
-
     with tempfile.TemporaryDirectory() as raw_directory:
         assert not list(retrieve_commands_from_jeeves_file(Path(raw_directory)))
 
