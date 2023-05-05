@@ -7,10 +7,9 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def wipe_jeeves_module_from_cache() -> bool:
+def wipe_jeeves_module_from_cache():
     try:
-        sys.modules.__delitem__('jeeves')   # noqa: WPS609
-        return True
+        return sys.modules.__delitem__('jeeves')   # noqa: WPS609
     except KeyError:
         return False
 
