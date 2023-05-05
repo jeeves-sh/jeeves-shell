@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "jeeves-shell"
 description = "Pythonic replacement for GNU Make"
-version = "2.1.5"
+version = "2.1.6"
 license = "MIT"
 
 authors = []
@@ -30,7 +30,7 @@ j = "jeeves_shell.cli:app"
 
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+python = ">=3.10,<4.0"
 typer = "^0.7.0"
 documented = "^0.1.1"
 more-itertools = "^9.0.0"
@@ -38,13 +38,11 @@ more-itertools = "^9.0.0"
 
 [tool.poetry.group.dev.dependencies]
 m2r2 = "^0.2"
-mkdocs = "^1.2.2"
 mkdocstrings = "^0.19.1"
-mkdocs-material = "^8.5.11"
 
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
 importlib-metadata = "<5.0"
-jeeves-yeti-pyproject = "^0.2.0"
+jeeves-yeti-pyproject = "^0.2.15"
 mkdocs-macros-plugin = "^0.7.0"
 dominate = "^2.7.0"
 
