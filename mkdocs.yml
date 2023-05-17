@@ -5,10 +5,13 @@ copyright: Copyright &copy; 2022 jeeves.sh
 
 
 markdown_extensions:
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
   - admonition
   - codehilite
   - attr_list
-  - pymdownx.tabbed
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.emoji:
