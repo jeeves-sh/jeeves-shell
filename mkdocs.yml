@@ -21,6 +21,7 @@ markdown_extensions:
 plugins:
   - search
   - mkdocstrings
+  - iolanta
   - macros:
       modules:
         - macros
@@ -31,4 +32,4 @@ theme:
     - header.autohide
     - navigation.indexes
     - content.code.annotate
-
+    - navigation.sections

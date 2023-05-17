@@ -45,6 +45,7 @@ importlib-metadata = "<5.0"
 jeeves-yeti-pyproject = "^0.2.15"
 mkdocs-macros-plugin = "^0.7.0"
 dominate = "^2.7.0"
+iolanta-tables = "^0.1.7"
 
 [tool.flakeheaven.exceptions."jeeves_shell/jeeves.py"]
 wemake-python-styleguide = [

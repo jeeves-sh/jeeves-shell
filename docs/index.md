@@ -70,13 +70,13 @@ Install Jeeves:
 === "pip"
 
     ```bash
-    pip install jeeves-shell
+    pip install 'jeeves-shell[all]'
     ```
 
 === "poetry"
 
     ```bash
-    poetry add --group dev jeeves-shell
+    poetry add --group dev 'jeeves-shell[all]'
     ```
 
 Check it out!

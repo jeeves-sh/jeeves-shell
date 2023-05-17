@@ -847,6 +847,22 @@ iolanta = ">=1.0.12,<2.0.0"
 Jinja2 = ">=3.1.2,<4.0.0"
 
 [[package]]
+name = "iolanta-tables"
+version = "0.1.7"
+description = "Linked Data as tables"
+category = "dev"
+optional = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "iolanta_tables-0.1.7-py3-none-any.whl", hash = "sha256:43940134bcca71b52e0ad3d98302c7c3f035da6e3029359a20fc3295492e969d"},
+    {file = "iolanta_tables-0.1.7.tar.gz", hash = "sha256:1b4b65ca886e3a2d0f57e9eda9a0b6db5c8aa4c0768329c2d61ffa78f0a32199"},
+]
+
+[package.dependencies]
+dominate = ">=2.7.0,<3.0.0"
+iolanta = ">=1.0.11,<2.0.0"
+
+[[package]]
 name = "isodate"
 version = "0.6.1"
 description = "An ISO 8601 date/time/duration parser and formatter"
@@ -2246,4 +2262,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "d7634d2c425b6d8d6c983cf6d5b55c4abd77bf4742a90ce075329e33896172fc"
+content-hash = "017b3f39060764979c5b51265952ab6995eec50a9d028190b4ec927656dd63fd"
