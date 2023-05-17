@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+# :simple-python: jeeves.py
+
 {# todo: draw a picture where Makefile is crossed away and jeeves.py is shown instead #}
 
 While GNU make goals are specified in a file named `Makefile`, Jeeves looks for commands in a file named `jeeves.py` in current directory.

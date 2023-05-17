@@ -28,6 +28,8 @@ plugins:
 
 theme:
   name: material
+  icon:
+    logo: material/bow-tie
   features:
     - header.autohide
     - navigation.indexes

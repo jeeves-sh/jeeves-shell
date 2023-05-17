@@ -4,6 +4,8 @@ hello: examples/hello.py
 hide:
   - toc
 ---
+
+# :material-bow-tie: Welcome to Jeeves!
  
 `jeeves` is kind of Pythonic replacement for **GNU Make**.
 

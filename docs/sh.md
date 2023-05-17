@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+# :material-bash: Shell Commands
+
 `make` is an orchestrator — it doesn't do much work itself, it calls other commands which do the work. That's what we recommend doing with `jeeves` as well. Among numerous ways to call other programs from Python we recommend a library named, quite concisely, `sh`: [:material-github: amoffat/sh](https://github.com/amoffat/sh).
 
 !!! info "Alternatives"

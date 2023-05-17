@@ -1,5 +1,5 @@
 ---
-title: Start Jeeves project
+title: "Start Jeeves project"
 
 $id: jeeves-alternatives
 table:columns:
@@ -17,6 +17,8 @@ table:rows:
   - schema:url: https://github.com/python-manage/manage
     rdfs:label: manage
 ---
+
+# :rocket: Start Jeeves project
 
 ## Context
 
