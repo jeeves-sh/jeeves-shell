@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "jeeves-shell"
 description = "Pythonic replacement for GNU Make"
-version = "2.1.7"
+version = "2.1.8"
 license = "MIT"
 
 authors = []
@@ -34,8 +34,11 @@ python = ">=3.10,<4.0"
 typer = "^0.7.0"
 documented = "^0.1.1"
 more-itertools = "^9.0.0"
-sh = {version = "^2.0.4", extras = ["all"]}
-rich = {version = "^13.3.5", extras = ["all"]}
+sh = {version = "^2.0.4", optional = true}
+rich = {version = "^13.3.5", optional = true}
+
+[tool.poetry.extras]
+all = ["sh", "rich"]
 
 [tool.poetry.group.dev.dependencies]
 m2r2 = "^0.2"
