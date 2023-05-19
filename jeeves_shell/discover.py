@@ -117,7 +117,10 @@ def _configure_callback(app: Jeeves) -> Jeeves:
 def construct_app(current_directory: Optional[Path] = None) -> Jeeves:
     """Discover plugins and construct a Typer app."""
     if current_directory is None:       # pragma: no cover
-        current_directory = Path.cwd()
+        if directory_from_environment := os.environ.get('JEEVES_ROOT'):
+            current_directory = Path(directory_from_environment)
+        else:
+            current_directory = Path.cwd()
 
     app = _construct_app_from_plugins()
     app = _configure_callback(app)
