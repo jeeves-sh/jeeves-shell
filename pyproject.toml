@@ -50,6 +50,7 @@ mkdocs-macros-plugin = "^0.7.0"
 dominate = "^2.7.0"
 iolanta-tables = "^0.1.7"
 mkdocs-awesome-pages-plugin = "^2.9.1"
+mkdocs-material = "^9.1.13"
 
 [tool.flakeheaven.exceptions."jeeves_shell/jeeves.py"]
 wemake-python-styleguide = [
