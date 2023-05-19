@@ -143,8 +143,8 @@ def j(
     return JEEVES_TEMPLATE.format(
         path=path,
         code=code,
-        stdout=response.stdout.decode(),
-        stderr=response.stderr.decode(),
+        stdout=response,
+        stderr='',
         annotations=format_annotations(annotations),
         cmd=cmd,
     )

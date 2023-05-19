@@ -80,7 +80,7 @@ Install Jeeves:
 === "poetry"
 
     ```bash
-    poetry add --group dev 'jeeves-shell[all]'
+    poetry add --group dev --extras=all jeeves-shell'
     ```
 
 Check it out!
