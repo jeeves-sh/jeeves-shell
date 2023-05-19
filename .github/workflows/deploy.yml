@@ -15,4 +15,5 @@ jobs:
       - run: pip install -q poetry
       - run: poetry config virtualenvs.create false --local
       - run: poetry install
+      - run: pip install jeeves-yeti-pyproject
       - run: poetry run mkdocs gh-deploy --force --clean --verbose
