@@ -909,20 +909,20 @@ requirements-deprecated-finder = ["pip-api", "pipreqs"]
 
 [[package]]
 name = "jeeves-yeti-pyproject"
-version = "0.2.17"
+version = "0.2.18"
 description = "Opinionated Jeeves plugin for Python projects."
 category = "dev"
 optional = false
 python-versions = ">=3.10,<4.0"
 files = [
-    {file = "jeeves_yeti_pyproject-0.2.17-py3-none-any.whl", hash = "sha256:bc19c8ff8f3218303025ec768304ead29c6c32e5bb1cc1d8249c31a5620ac4d1"},
-    {file = "jeeves_yeti_pyproject-0.2.17.tar.gz", hash = "sha256:b40b851a15670586839f21518d8b70722a5558f3477ddc4565f13b58431af8bc"},
+    {file = "jeeves_yeti_pyproject-0.2.18-py3-none-any.whl", hash = "sha256:ba55b62e6bcf08761fd39a08af603566f2fb10efa732dc8a0d9e9d3dd4bac778"},
+    {file = "jeeves_yeti_pyproject-0.2.18.tar.gz", hash = "sha256:a09835469c4895d2cc98dd76dfa2f5105b61a6cda7e5fc104732b5e7282ffefa"},
 ]
 
 [package.dependencies]
 add-trailing-comma = ">=2.4.0,<3.0.0"
 flakeheaven = ">=3.2.1,<4.0.0"
-jeeves-shell = {version = ">=2.1.8,<3.0.0", extras = ["all"]}
+jeeves-shell = {version = ">=2.1.10,<3.0.0", extras = ["all"]}
 mkdocs = ">=1.4.2,<2.0.0"
 mkdocs-iolanta = ">=0.1.0,<0.2.0"
 mkdocs-macros-plugin = ">=0.7.0,<0.8.0"
