@@ -82,6 +82,18 @@ toml = ["tomli (>=1.1.0)"]
 yaml = ["PyYAML"]
 
 [[package]]
+name = "bracex"
+version = "2.3.post1"
+description = "Bash style brace expander."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "bracex-2.3.post1-py3-none-any.whl", hash = "sha256:351b7f20d56fb9ea91f9b9e9e7664db466eb234188c175fd943f8f755c807e73"},
+    {file = "bracex-2.3.post1.tar.gz", hash = "sha256:e7b23fc8b2cd06d3dec0692baabecb249dda94e06a617901ff03a6c56fd71693"},
+]
+
+[[package]]
 name = "cachetools"
 version = "5.3.0"
 description = "Extensible memoizing collections and decorators"
@@ -1264,6 +1276,23 @@ Markdown = ">=3.3"
 mkdocs = ">=1.1"
 
 [[package]]
+name = "mkdocs-awesome-pages-plugin"
+version = "2.9.1"
+description = "An MkDocs plugin that simplifies configuring page titles and their order"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "mkdocs_awesome_pages_plugin-2.9.1-py3-none-any.whl", hash = "sha256:be65e36444f5d991f87a90dae37de64e932562f99e362078724c27124834b90a"},
+    {file = "mkdocs_awesome_pages_plugin-2.9.1.tar.gz", hash = "sha256:faf5241365f94c1f65ef3cad7ea9d6f0e7a436be7f06013c79c4045db0b2eafc"},
+]
+
+[package.dependencies]
+mkdocs = ">=1"
+natsort = ">=8.1.0"
+wcmatch = ">=7"
+
+[[package]]
 name = "mkdocs-iolanta"
 version = "0.1.5"
 description = "MkDocs plugin to integrate with Iolanta semantic web framework."
@@ -1427,6 +1456,22 @@ python-versions = ">=2.7"
 files = [
     {file = "mypy_extensions-0.4.4.tar.gz", hash = "sha256:c8b707883a96efe9b4bb3aaf0dcc07e7e217d7d8368eec4db4049ee9e142f4fd"},
 ]
+
+[[package]]
+name = "natsort"
+version = "8.3.1"
+description = "Simple yet flexible natural sorting in Python."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "natsort-8.3.1-py3-none-any.whl", hash = "sha256:d583bc9050dd10538de36297c960b93f873f0cd01671a3c50df5bd86dd391dcb"},
+    {file = "natsort-8.3.1.tar.gz", hash = "sha256:517595492dde570a4fd6b6a76f644440c1ba51e2338c8a671d7f0475fda8f9fd"},
+]
+
+[package.extras]
+fast = ["fastnumbers (>=2.0.0)"]
+icu = ["PyICU (>=1.0.0)"]
 
 [[package]]
 name = "owlrl"
@@ -2211,6 +2256,21 @@ files = [
 watchmedo = ["PyYAML (>=3.10)"]
 
 [[package]]
+name = "wcmatch"
+version = "8.4.1"
+description = "Wildcard/glob file name matcher."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "wcmatch-8.4.1-py3-none-any.whl", hash = "sha256:3476cd107aba7b25ba1d59406938a47dc7eec6cfd0ad09ff77193f21a964dee7"},
+    {file = "wcmatch-8.4.1.tar.gz", hash = "sha256:b1f042a899ea4c458b7321da1b5e3331e3e0ec781583434de1301946ceadb943"},
+]
+
+[package.dependencies]
+bracex = ">=2.1.1"
+
+[[package]]
 name = "wemake-python-styleguide"
 version = "0.17.0"
 description = "The strictest and most opinionated python linter ever"
@@ -2265,4 +2325,4 @@ all = ["rich", "sh"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "b6d8c908ad359573b50332157156f4e7c5b5ce61fbeccb7c227dabc6a705e085"
+content-hash = "1e93c1a65d1383c9442a2dbd2c0d4fedae0c330e89356d6697354d222a58d8dc"

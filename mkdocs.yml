@@ -21,6 +21,7 @@ markdown_extensions:
 plugins:
   - search
   - mkdocstrings
+  - awesome-pages
   - iolanta
   - macros:
       modules:
