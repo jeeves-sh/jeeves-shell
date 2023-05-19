@@ -1223,7 +1223,7 @@ name = "sh"
 version = "2.0.4"
 description = "Python subprocess replacement"
 category = "main"
-optional = true
+optional = false
 python-versions = ">=3.8.1,<4.0"
 files = [
     {file = "sh-2.0.4-py3-none-any.whl", hash = "sha256:14265a4cd1622429edcf300292ec98193530fb143fe642b3437024eca9bee8c5"},
@@ -1403,4 +1403,4 @@ all = ["rich", "sh"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "58ddb2b487c2ef687ddefdffc49f992151b7d229328614ae5fdceb3de428da4a"
+content-hash = "bcc81ebce4bf5415adb1ab089f01b6cf0c99d533280e79b0783a8d5aa734a520"
