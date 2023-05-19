@@ -40,6 +40,7 @@ jobs:
         poetry config virtualenvs.in-project true
         poetry run pip install -U pip
         poetry install
+        pip install jeeves-yeti-pyproject
 
     - name: Lint
       run: poetry run j lint
