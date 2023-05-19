@@ -349,6 +349,22 @@ typer = ">=0.7.0,<0.8.0"
 urlpath = ">=1.1.7,<2.0.0"
 
 [[package]]
+name = "iolanta-jinja2"
+version = "0.1.4"
+description = "Render Jinja2 templates from Iolanta graph"
+category = "dev"
+optional = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "iolanta_jinja2-0.1.4-py3-none-any.whl", hash = "sha256:9670c6810f8778a3bb7f05763d349302be052b63d575e4a931587f5fe413c3e7"},
+    {file = "iolanta_jinja2-0.1.4.tar.gz", hash = "sha256:a8db8289ee96e1a48aafe4ef8b75ee3ab8bd8ac193ae604a5d267d4473f29f27"},
+]
+
+[package.dependencies]
+iolanta = ">=1.0.12,<2.0.0"
+Jinja2 = ">=3.1.2,<4.0.0"
+
+[[package]]
 name = "iolanta-tables"
 version = "0.1.7"
 description = "Linked Data as tables"
@@ -721,6 +737,24 @@ files = [
 mkdocs = ">=1"
 natsort = ">=8.1.0"
 wcmatch = ">=7"
+
+[[package]]
+name = "mkdocs-iolanta"
+version = "0.1.5"
+description = "MkDocs plugin to integrate with Iolanta semantic web framework."
+category = "dev"
+optional = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "mkdocs_iolanta-0.1.5-py3-none-any.whl", hash = "sha256:00cd27630e591f709928329cb919b1994612e9994da5987bcd6f8e396de5d134"},
+    {file = "mkdocs_iolanta-0.1.5.tar.gz", hash = "sha256:139563db64f0613c8174b2429795d54c1763845ed7ede9d34b906209bbb87cf6"},
+]
+
+[package.dependencies]
+iolanta = ">=1.0.14,<2.0.0"
+iolanta-jinja2 = ">=0.1.2,<0.2.0"
+mkdocs = ">=1.4.2,<2.0.0"
+mkdocs-macros-plugin = ">=0.7.0,<0.8.0"
 
 [[package]]
 name = "mkdocs-macros-plugin"
@@ -1369,4 +1403,4 @@ all = ["rich", "sh"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "e7b5986c3e15bb70a129f68d987cd324756e1a3754b36894d9f96dcfa8cd2fe7"
+content-hash = "58ddb2b487c2ef687ddefdffc49f992151b7d229328614ae5fdceb3de428da4a"
