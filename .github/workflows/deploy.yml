@@ -1,0 +1,18 @@
+# https://blog.elmah.io/deploying-a-mkdocs-documentation-site-with-github-actions/
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    name: Deploy to GitHub pages
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - run: pip install -q poetry
+      - run: poetry config virtualenvs.create false --local
+      - run: poetry install
+      - run: poetry run mkdocs gh-deploy --force --clean --verbose
