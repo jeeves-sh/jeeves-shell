@@ -1,6 +1,7 @@
 nav:
   - index.md
   - jeeves-py.md
+  - _hidden.md
   - typer.md
   - sh.md
   - ...

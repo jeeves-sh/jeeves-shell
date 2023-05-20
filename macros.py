@@ -1,6 +1,7 @@
 """MkDocs macros for the documentation site."""
 import functools
 import operator
+import shutil
 import tempfile
 import textwrap
 from pathlib import Path
@@ -76,15 +77,24 @@ def code(
     language: Optional[str] = None,
     title: Optional[str] = None,
     annotations: Optional[List[str]] = None,
+    indent: Optional[int] = None,
 ):
     code_content = (docs_dir / path).read_text()
 
-    return CODE_TEMPLATE.format(
+    response = CODE_TEMPLATE.format(
         language=language,
         code=code_content,
         title=title or path,
         annotations=format_annotations(annotations or []),
     )
+
+    if indent:
+        return textwrap.indent(
+            response,
+            ' ' * indent,
+        )
+
+    return response
 
 
 def run_python_script(
@@ -140,12 +150,18 @@ def j(
         args = []
 
     code_path = docs_dir / path
-    code = code_path.read_text()
 
     with tempfile.TemporaryDirectory() as raw_directory:
         directory = Path(raw_directory)
 
-        (directory / 'jeeves.py').write_text(code)
+        if code_path.is_file():
+            (directory / 'jeeves.py').write_text(code_path.read_text())
+
+        else:
+            shutil.copytree(
+                code_path,
+                directory / 'jeeves',
+            )
 
         try:
             response = jeeves(
