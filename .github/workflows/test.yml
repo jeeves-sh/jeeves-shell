@@ -43,10 +43,10 @@ jobs:
         pip install jeeves-yeti-pyproject
 
     - name: Lint
-      run: poetry run j lint
+      run: j lint
 
     - name: Test
-      run: poetry run j test
+      run: j test
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
