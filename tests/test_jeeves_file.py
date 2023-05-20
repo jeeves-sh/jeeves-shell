@@ -7,7 +7,7 @@ import pytest
 from typer import Typer
 
 from jeeves_shell.discover import retrieve_commands_from_jeeves_file
-from tests.base import (
+from base import (
     environment_from_jeeves_file,
     environment_from_jeeves_package,
 )
