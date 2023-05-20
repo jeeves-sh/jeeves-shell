@@ -1,6 +1,6 @@
 ---
 $id: shell-combinators
-title: Use sh as default shell combinator library
+title: Use sh for shell combinators
 hide:
   - toc
 
@@ -60,6 +60,8 @@ table:rows:
     rdfs:label: dgilland/shelmet
     import-hook: no
 ---
+
+# Use `sh` for shell combinators
 
 {# todo: mkdocs-iolanta must render table in the page body itself #}
 {# todo: mark sh in green #}

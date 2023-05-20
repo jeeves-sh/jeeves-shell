@@ -4,4 +4,8 @@ nav:
   - _hidden.md
   - typer.md
   - sh.md
+  - rich.md
+  - advanced
+  - plugins
+  - reference
   - ...
