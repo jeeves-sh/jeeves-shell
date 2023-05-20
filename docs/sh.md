@@ -1,16 +1,19 @@
 ---
-title: Shell Commands
+title: "Shell Commands with sh"
 sample: examples/shell.py
 hide:
   - toc
 ---
 
-# :material-bash: Shell Commands
+# :material-bash: Shell Commands with `sh`
 
 `make` is an orchestrator — it doesn't do much work itself, it calls other commands which do the work. That's what we recommend doing with `jeeves` as well. Among numerous ways to call other programs from Python we recommend a library named, quite concisely, `sh`: [:material-github: amoffat/sh](https://github.com/amoffat/sh).
 
+!!! info "Installation"
+    It will be installed as an optional dependency of `jeeves-shell[all]`.
+
 !!! info "Alternatives"
-    See [shell cobminators](../decisions/shell-combinators/) to check out other available tools.
+    See [shell cobminators](../project/decisions/shell-combinators/) to check out other available tools.
 
 {# fixme: rendering `shell-combinators` will render the table inline — not the link to the page. #}
 

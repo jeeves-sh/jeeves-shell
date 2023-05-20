@@ -2,13 +2,22 @@
 import functools
 import operator
 import tempfile
+import textwrap
 from pathlib import Path
 from typing import Dict, List, Optional
 
 from mkdocs_macros.plugin import MacrosPlugin
-from sh import bash
+from sh import bash, ErrorReturnCode
 from sh import j as jeeves
 from sh import python
+
+STDERR_TEMPLATE = """
+!!! danger "Error"
+    ```
+{stderr}
+    ```
+"""
+
 
 PYTHON_TEMPLATE = """
 ```python title="{path}"
@@ -19,9 +28,10 @@ PYTHON_TEMPLATE = """
 
 ⇒
 ```python title="{cmd} {path}"
-{stderr}
 {stdout}
 ```
+
+{stderr}
 """
 
 
@@ -29,6 +39,8 @@ JEEVES_TEMPLATE = """
 ``` title="↦ <code>{cmd}</code>"
 {stdout}
 ```
+
+{stderr}
 """
 
 
@@ -107,6 +119,13 @@ def run_python_script(
     )
 
 
+def formatted_stderr(stderr: Optional[str]) -> str:
+    if not stderr:
+        return ''
+
+    return STDERR_TEMPLATE.format(stderr=stderr)
+
+
 def j(
     path: str,
     docs_dir: Path,
@@ -128,12 +147,22 @@ def j(
 
         (directory / 'jeeves.py').write_text(code)
 
-        response = jeeves(
-            *args,
-            _cwd=directory,
-            _env=environment,
-            _tty_out=False,
-        )
+        try:
+            response = jeeves(
+                *args,
+                _cwd=directory,
+                _env=environment,
+                _tty_out=False,
+            )
+        except ErrorReturnCode as err:
+            stdout = err.stdout.decode() or '(stdout is empty)'
+            stderr = textwrap.indent(
+                err.stderr.decode(),
+                prefix='    ',
+            )
+        else:
+            stdout = response
+            stderr = None
 
     cmd = 'j'
     if args:
@@ -143,8 +172,8 @@ def j(
     return JEEVES_TEMPLATE.format(
         path=path,
         code=code,
-        stdout=response,
-        stderr='',
+        stdout=stdout,
+        stderr=formatted_stderr(stderr),
         annotations=format_annotations(annotations),
         cmd=cmd,
     )
@@ -169,6 +198,7 @@ def terminal(
         output=output,
         title=title or command,
     )
+
 
 def define_env(env: MacrosPlugin):
     """Hook function."""

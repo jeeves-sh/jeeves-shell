@@ -13,8 +13,6 @@ While GNU make goals are specified in a file named `Makefile`, Jeeves looks for 
 
 ## Commands
 
-{# todo: describe google Fire as alternative #}
-
 Every Python function in `jeeves.py` is converted into a command.
 
 * Docstrings are used as command documentation,
@@ -31,34 +29,3 @@ Check out how automated documentation works:
 Or, for the given command:
 
 {{ j(page.meta.hello, environment={'JEEVES_DISABLE_PLUGINS': 'true'}, args=['hi', '--help']) }}
-
-
-## Behind the scenes: Typer
-
-{# fixme: Typer logo is hotlinked, vendor it instead #}
-
-[![Typer](https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg)](https://typer.tiangolo.com)
-
-What Jeeves does here is converting every function in `jeeves.py` into a [Typer](https://typer.tiangolo.com) [command](https://typer.tiangolo.com/tutorial/commands/). Just as if you did:
-
-```python
-from typer import Typer
-
-app = Typer()
-
-@app.command()
-def hi(name: str):
-    """…"""
-
-if __name__ == '__main__':
-    app()
-```
-
-* That's one way how Jeeves reduces the boilerplate;
-* The other way is to expose all those commands via the `j` shortcut.
-
-Nonetheless, you still **can** use most Typer features, such as:
-
-* define `typer.Argument`'s and `typer.Option`'s for your commands,
-* validate user input using type hints,
-* and much more.

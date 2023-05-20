@@ -84,6 +84,8 @@ table:rows:
 
 There are a few alternatives available, none of which I 100% like. 
 
+{# todo: describe google Fire as alternative #}
+
 {{ render("jeeves-alternatives") }}
 
 ## Decision
