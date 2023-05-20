@@ -1,6 +1,8 @@
 ---
 title: Sub-commands
 subcommands: advanced/examples/sub-commands.py
+hide:
+  - toc
 ---
 
 # :material-submarine: Sub-commands

@@ -137,7 +137,7 @@ def formatted_stderr(stderr: Optional[str]) -> str:
 
 
 def j(
-    path: str,
+    path: Optional[str],
     docs_dir: Path,
     annotations: Optional[List[str]] = None,
     args: Optional[List[str]] = None,
@@ -149,19 +149,20 @@ def j(
     if args is None:
         args = []
 
-    code_path = docs_dir / path
-
     with tempfile.TemporaryDirectory() as raw_directory:
         directory = Path(raw_directory)
 
-        if code_path.is_file():
-            (directory / 'jeeves.py').write_text(code_path.read_text())
+        if path is not None:
+            code_path = docs_dir / path
 
-        else:
-            shutil.copytree(
-                code_path,
-                directory / 'jeeves',
-            )
+            if code_path.is_file():
+                (directory / 'jeeves.py').write_text(code_path.read_text())
+
+            else:
+                shutil.copytree(
+                    code_path,
+                    directory / 'jeeves',
+                )
 
         try:
             response = jeeves(

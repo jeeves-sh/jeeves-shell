@@ -1,6 +1,8 @@
 ---
 $id: jeeves-package
 title: Jeeves package
+hide:
+  - toc
 
 package: advanced/examples/package
 

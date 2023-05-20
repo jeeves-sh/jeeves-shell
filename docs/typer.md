@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+# :material-typewriter: Typer
+
 Behind the scenes, Jeeves relies upon [Typer](https://typer.tiangolo.com).
 
 {# fixme: Typer logo is hotlinked, vendor it instead #}

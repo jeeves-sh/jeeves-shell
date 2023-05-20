@@ -2,9 +2,11 @@
 $id: hidden-functions
 title: def _hidden()
 hidden: examples/hidden.py
+hide:
+  - toc
 ---
 
-# `def _hidden()` functions
+# :material-eye-off: `def _hidden()` functions
 
 If function name starts from an underscore, it will _not_ be converted to a command.
 
