@@ -19,8 +19,8 @@ logger = logging.getLogger('jeeves')
 def list_installed_plugins() -> List[Tuple[str, Jeeves]]:
     """Find installed plugins."""
     return [
-        (entry_point.name, entry_point.load())
-        for entry_point in entry_points(group='jeeves')
+        (entry_point.name, entry_point.load())  # type: ignore
+        for entry_point in entry_points(group='jeeves')  # type: ignore
     ]
 
 
@@ -68,9 +68,17 @@ def retrieve_commands_from_jeeves_file(   # type: ignore   # noqa: C901
         jeeves_module = import_by_path(
             path=directory,
         )
-    except ImportError as err:
-        logger.debug('Cannot import: %s', err)
-        return
+
+    except ImportError as err:    # pragma: nocover
+        # We could not import something.
+        if err.name == 'jeeves':
+            # We couldn't import jeeves module. We can skip that.
+            logger.debug('Module not found: %s', err)
+            return
+
+        # Something that `jeeves` module is importing can't be imported, that is
+        # a problem.
+        raise
 
     for name, command in vars(jeeves_module).items():  # noqa: WPS421
         if not _is_name_suitable(name):
