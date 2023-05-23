@@ -76,7 +76,7 @@ def test_multiple(jeeves_files: Path):
     assert command_names == ['foo', 'boo']
 
 
-def test_import_error(jeeves_files: Path):
+def test_missing(jeeves_files: Path):
     with tempfile.TemporaryDirectory() as raw_directory:
         assert not list(retrieve_commands_from_jeeves_file(Path(raw_directory)))
 
@@ -86,6 +86,14 @@ def test_syntax_error(jeeves_files: Path):
         jeeves_files / 'syntax_error.txt',
     ) as directory:
         with pytest.raises(SyntaxError):
+            list(retrieve_commands_from_jeeves_file(directory))
+
+
+def test_import_error(jeeves_files: Path):
+    with environment_from_jeeves_file(
+        jeeves_files / 'import_error.py',
+    ) as directory:
+        with pytest.raises(ImportError):
             list(retrieve_commands_from_jeeves_file(directory))
 
 

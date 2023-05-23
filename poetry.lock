@@ -201,14 +201,14 @@ files = [
 
 [[package]]
 name = "dominate"
-version = "2.7.0"
+version = "2.8.0"
 description = "Dominate is a Python library for creating and manipulating HTML documents using an elegant DOM API."
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 files = [
-    {file = "dominate-2.7.0-py2.py3-none-any.whl", hash = "sha256:5fe4258614687c6d3de67b0bbd881ed435a93a19742ae187344055db17052402"},
-    {file = "dominate-2.7.0.tar.gz", hash = "sha256:520101360892ebf9d0553f67d37e359ff92403d8a1e33814030503088a05da49"},
+    {file = "dominate-2.8.0-py2.py3-none-any.whl", hash = "sha256:1a916479c45b95fedba0d077b081d77c2d2e0f0f484ac827105087af23661d73"},
+    {file = "dominate-2.8.0.tar.gz", hash = "sha256:4c90c3befaf88e612b71f4b39af7bcbef8977acfa855cec957225a8fbf504007"},
 ]
 
 [[package]]
@@ -780,14 +780,14 @@ test = ["mkdocs-include-markdown-plugin", "mkdocs-macros-test", "mkdocs-material
 
 [[package]]
 name = "mkdocs-material"
-version = "9.1.13"
+version = "9.1.14"
 description = "Documentation that simply works"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "mkdocs_material-9.1.13-py3-none-any.whl", hash = "sha256:5705cf8cb6c47c747606bd914bb6c01993ff141295cd259475559a1f09f07d5d"},
-    {file = "mkdocs_material-9.1.13.tar.gz", hash = "sha256:9102e7604d73e507021847601b0a8b4fe9035422788390183f464fa3b30dd508"},
+    {file = "mkdocs_material-9.1.14-py3-none-any.whl", hash = "sha256:b56a9f955ed32d38333715cbbf68ce38f683bf38610c65094fa4ef2db9f08bcd"},
+    {file = "mkdocs_material-9.1.14.tar.gz", hash = "sha256:1ae74cc5464ef2f64574d4884512efed7f4db386fb9bc6af20fd427d7a702f49"},
 ]
 
 [package.dependencies]
@@ -1179,14 +1179,14 @@ files = [
 
 [[package]]
 name = "requests"
-version = "2.30.0"
+version = "2.31.0"
 description = "Python HTTP for Humans."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "requests-2.30.0-py3-none-any.whl", hash = "sha256:10e94cc4f3121ee6da529d358cdaeaff2f1c409cd377dbc72b825852f2f7e294"},
-    {file = "requests-2.30.0.tar.gz", hash = "sha256:239d7d4458afcb28a692cdd298d87542235f4ca8d36d03a15bfc128a6559a2f4"},
+    {file = "requests-2.31.0-py3-none-any.whl", hash = "sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f"},
+    {file = "requests-2.31.0.tar.gz", hash = "sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1"},
 ]
 
 [package.dependencies]
@@ -1280,32 +1280,33 @@ test = ["black (>=22.3.0,<23.0.0)", "coverage (>=6.2,<7.0)", "isort (>=5.0.6,<6.
 
 [[package]]
 name = "typing-extensions"
-version = "4.5.0"
+version = "4.6.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},
-    {file = "typing_extensions-4.5.0.tar.gz", hash = "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb"},
+    {file = "typing_extensions-4.6.0-py3-none-any.whl", hash = "sha256:6ad00b63f849b7dcc313b70b6b304ed67b2b2963b3098a33efe18056b1a9a223"},
+    {file = "typing_extensions-4.6.0.tar.gz", hash = "sha256:ff6b238610c747e44c268aa4bb23c8c735d665a63726df3f9431ce707f2aa768"},
 ]
 
 [[package]]
 name = "urllib3"
-version = "1.26.15"
+version = "2.0.2"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+python-versions = ">=3.7"
 files = [
-    {file = "urllib3-1.26.15-py2.py3-none-any.whl", hash = "sha256:aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42"},
-    {file = "urllib3-1.26.15.tar.gz", hash = "sha256:8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305"},
+    {file = "urllib3-2.0.2-py3-none-any.whl", hash = "sha256:d055c2f9d38dc53c808f6fdc8eab7360b6fdbbde02340ed25cfbcd817c62469e"},
+    {file = "urllib3-2.0.2.tar.gz", hash = "sha256:61717a1095d7e155cdb737ac7bb2f4324a858a1e2e6466f6d03ff630ca68d3cc"},
 ]
 
 [package.extras]
-brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)", "brotlipy (>=0.6.0)"]
-secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)", "urllib3-secure-extra"]
-socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
+brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
+secure = ["certifi", "cryptography (>=1.9)", "idna (>=2.0.0)", "pyopenssl (>=17.1.0)", "urllib3-secure-extra"]
+socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
+zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "urlpath"
