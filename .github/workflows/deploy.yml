@@ -20,6 +20,7 @@ jobs:
         with:
           repository: jeeves-sh/mkdocs-material-insiders
           path: mkdocs-material-insiders
+          token: ${{ secrets.INSIDERS_TOKEN }}
 
       - run: j install-mkdocs-insiders
       - run: j deploy-to-github-pages
