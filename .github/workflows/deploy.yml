@@ -16,7 +16,10 @@ jobs:
       - run: poetry config virtualenvs.create false --local
       - run: poetry install
       - run: pip install jeeves-yeti-pyproject
+      - uses: actions/checkout@v3
+        with:
+          repository: squidfunk/mkdocs-material-insiders
+          path: mkdocs-material-insiders
+
       - run: j install-mkdocs-insiders
-        env:
-          GH_TOKEN: ${{ github.token }}
       - run: j deploy-to-github-pages
