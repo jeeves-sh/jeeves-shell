@@ -36,3 +36,9 @@ theme:
     - navigation.indexes
     - content.code.annotate
     - navigation.sections
+
+#extra_javascript:
+#  - assets/termynal/termynal.js
+
+extra_css:
+  - assets/termynal/termynal.css

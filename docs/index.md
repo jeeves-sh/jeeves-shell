@@ -3,11 +3,30 @@ title: Welcome to jeeves!
 hello: examples/hello.py
 hide:
   - toc
+  - navigation
 ---
 
 # :material-bow-tie: Welcome to Jeeves!
- 
+
+<div class="grid" markdown>
+
+{{ code("examples/homepage.py", language='python', title='jeeves.py') }}
+
+<div id="hero">
+  <div id="termynal" data-ty-startDelay="600">
+    <span data-ty="input"> ls</span>
+    <span data-ty><code>jeeves.py</code></span>
+    <span data-ty="input"> j hi</span>
+    <span data-ty>Hello <strong>john-connor</strong>!</span>
+    <span data-ty>This code is running on: <strong>Cyberdyne Systems v101 T800 sky512</strong>!</span>
+  </div>
+</div>
+
+</div>
+
 {# todo: Implement Roadmap page #}
+
+# What is this?
 
 `jeeves` is kind of Pythonic replacement for **GNU Make**.
 
@@ -88,3 +107,5 @@ Check it out!
 {{ j(page.meta.hello, environment={'JEEVES_DISABLE_PLUGINS': 'true'}, args=['hi', "world"]) }}
 
 Find out more [in the tutorial…](jeeves-py)
+
+<script src="/assets/termynal/termynal.js" data-termynal-container="#termynal"></script>

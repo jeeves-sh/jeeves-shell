@@ -215,3 +215,6 @@ fabric.properties
 
 .idea/
 .flakeheaven_cache/
+
+.python-version
+mkdocs-material-insiders/
