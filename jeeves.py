@@ -8,7 +8,7 @@ def install_mkdocs_insiders():
     name = 'mkdocs-material-insiders'
 
     if not (Path.cwd() / name).is_dir():
-        sh.gh.repo.clone(f'squidfunk/{name}')
+        sh.gh.repo.clone(f'jeeves-sh/{name}')
 
     sh.pip.install('-e', name)
 

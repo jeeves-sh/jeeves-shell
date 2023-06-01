@@ -18,7 +18,7 @@ jobs:
       - run: pip install jeeves-yeti-pyproject
       - uses: actions/checkout@v3
         with:
-          repository: squidfunk/mkdocs-material-insiders
+          repository: jeeves-sh/mkdocs-material-insiders
           path: mkdocs-material-insiders
 
       - run: j install-mkdocs-insiders
