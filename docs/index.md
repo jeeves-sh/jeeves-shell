@@ -14,7 +14,7 @@ hide:
 
 <div id="termynal" data-ty-startDelay="600">
   <span data-ty="input"> ls</span>
-  <span data-ty><code>jeeves.py</code></span>
+  <span data-ty><a href="jeeves-py" target="_blank">jeeves.py</a></span>
   <span data-ty="input"> j hi</span>
   <span data-ty>Hello <strong>john-connor</strong>!</span>
   <span data-ty>This code is running on: <strong>Cyberdyne T800</strong>!</span>
