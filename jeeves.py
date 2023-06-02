@@ -16,3 +16,7 @@ def install_mkdocs_insiders():
 def deploy_to_github_pages():
     """Build the docs & deploy → gh-pages branch."""
     sh.mkdocs('gh-deploy', '--force', '--clean', '--verbose')
+
+
+def install_graphviz():
+    sh.sudo('apt-get', 'install', '-y', 'graphviz')

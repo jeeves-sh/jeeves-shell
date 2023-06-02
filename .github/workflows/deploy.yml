@@ -22,5 +22,6 @@ jobs:
           path: mkdocs-material-insiders
           token: ${{ secrets.INSIDERS_TOKEN }}
 
+      - run: j install-graphviz
       - run: j install-mkdocs-insiders
       - run: j deploy-to-github-pages
