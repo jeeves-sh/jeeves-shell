@@ -2,6 +2,9 @@
 hide:
   - toc
 roadmap:roadmap:
+  - title: Publish and document jeeves-generate-mkdocs-material-insiders
+    is-blocked-by: jeeves-generate
+
   - title: jeeves → social media
     $id: publish
     branches:
@@ -9,21 +12,53 @@ roadmap:roadmap:
       - title: dev.to
       - title: …
     is-blocked-by:
-      - title: Tests are failing at CI
-        bug: true
+      - title: jeeves-generate → jeeves-yeti-pyproject
+        is-blocked-by:
+          - title: Publish jeeves-generate micro-framework
+            $id: jeeves-generate
+            is-blocked-by:
+              - title: Do not generate anything if there are uncommitted changes
+              - title: Integration with cookiecutter
+                is-blocked-by:
+                  - title: What about the uncontrolled generators?
+              - title: LockingPath class
+              - title: How to pass the locking instance of project directory?
+                branches:
+                  - title: Via dependencies
+                  - title: Via Typer context
+        
+      - https://github.com/jeeves-sh/jeeves-shell/issues/15
+      
+      - title: On Typer card, say why Typer is cool
+      - title: Document why we chose Typer
+        is-blocked-by:
+          - title: In alternatives tables, highlight the chosen alternative with green background
+
+      - title: Document which license Jeeves is using
+        is-blocked-by:
+          - https://github.com/jeeves-sh/jeeves-shell/issues/18
+
+      - title: Badges in README.md are in bad shape
+        is-blocked-by:
+          - title: Tests are failing @ CI
+            bug: true
+
+      - title: Implement & use Side By Side display with cards
+      
+      - title: Document use cases
+
       - title: Generate Github workflows at jeeves-yeti-pyproject
         is-blocked-by:
           - title: "Implement `jeeves boilerplate`"
+            branches:
+              - title: "Run tasks registered as plugins to jeeves-boilerplate"
+              - title: "Somehow with Cookiecutter?"
 
-      - title: The word Build is twice repeated on the first card
-        bug: true
       - title: Sync jeeves.py example with home page example
         is-blocked-by:
-          - title: Add args to home page example
-      - title: Copyright is 2022
-        bug: true
+          - https://github.com/jeeves-sh/jeeves-shell/issues/19
+
       - title: Make social cards
-      - title: In alternatives tables, highlight the chosen alternative with green background
       - title: sh command streams decorator — where?
         branches:
           - title: Part of Jeeves
@@ -75,8 +110,6 @@ roadmap:roadmap:
                               - title: Do some uncommitted changes
 
   - title: Convert j → self-contained binary
-
-  - title: Choose software license and link to its human readable description
 
   - title: Some kind of Python conference at 2023
     $id: presentation
