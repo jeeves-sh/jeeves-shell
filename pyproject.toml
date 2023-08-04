@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "jeeves-shell"
 description = "Pythonic replacement for GNU Make"
-version = "2.1.11"
+version = "2.2.0"
 license = "MIT"
 
 authors = []
@@ -31,7 +31,7 @@ j = "jeeves_shell.cli:app"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
-typer = "^0.7.0"
+typer = "^0.9.0"
 documented = "^0.1.1"
 more-itertools = "^9.0.0"
 sh = {version = "^2.0.4", optional = true}
@@ -54,6 +54,7 @@ mkdocs-material = "^9.1.13"
 mkdocs-iolanta = "^0.1.5"
 sh = "^2.0.4"
 iolanta-roadmap = "^0.1.0"
+urllib3 = "<2.0.0"
 
 [tool.flakeheaven.exceptions."jeeves_shell/jeeves.py"]
 wemake-python-styleguide = [
