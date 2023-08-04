@@ -1,6 +1,7 @@
 site_name: jeeves
 repo_url: https://github.com/jeeves-sh/jeeves-shell
-repo_name: jeeves-shell
+repo_name: jeeves-sh/jeeves-shell
+edit_uri: edit/master/docs/
 copyright: Copyright &copy; 2023 jeeves.sh
 
 markdown_extensions:
@@ -31,6 +32,7 @@ theme:
   icon:
     logo: material/bow-tie
   features:
+    - content.action.edit
     - header.autohide
     - navigation.indexes
     - content.code.annotate
