@@ -4,11 +4,11 @@ import string
 import types
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Iterable, Optional, Tuple, DefaultDict, Annotated
+from typing import Annotated, Any, DefaultDict, Iterable, Optional, Tuple
 
 import funcy
 import more_itertools
-from typer import Typer, Option
+from typer import Option, Typer
 
 from jeeves_shell.entry_points import entry_points
 from jeeves_shell.errors import PluginConflict, UnsuitableRootApp

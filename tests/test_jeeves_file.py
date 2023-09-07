@@ -75,7 +75,12 @@ def test_multiple(jeeves_files: Path):
 
 def test_missing(jeeves_files: Path):
     with tempfile.TemporaryDirectory() as raw_directory:
-        assert not list(retrieve_commands_from_jeeves_file(Path(raw_directory)))
+        assert not list(
+            retrieve_commands_from_jeeves_file(
+                # This directory does not exist ⬎
+                Path(raw_directory) / 'foo',
+            ),
+        )
 
 
 def test_syntax_error(jeeves_files: Path):

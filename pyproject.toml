@@ -91,3 +91,9 @@ pyflakes = [
     # %s imported but unused
     "-F401",
 ]
+
+[tool.flakeheaven.exceptions."docs/plugins/how-to.md"]
+flake8-eradicate = [
+  # Found commented out code
+  "-E800"
+]
