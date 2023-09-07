@@ -19,4 +19,10 @@ def deploy_to_github_pages():
 
 
 def install_graphviz():
+    """Install graphviz, which is a prerequisite for some helper packages."""
     sh.sudo('apt-get', 'install', '-y', 'graphviz')
+
+
+def serve():
+    """Serve documentation locally."""
+    sh.mkdocs.serve('-a', 'localhost:8971', _fg=True)
