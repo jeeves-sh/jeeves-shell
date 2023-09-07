@@ -41,3 +41,17 @@ class PluginConflict(DocumentedError):
         return '\n'.join(
             f'• {plugin}' for plugin in self.plugins
         )
+
+
+@dataclass
+class UnsuitableRootApp(DocumentedError):
+    """
+    Typer app wants to be used as root Jeeves app but it has a callback.
+
+    Typer app: {self.app}
+    Registered callback: {self.app.registered_callback}
+
+    Unable to assign standard Jeeves callback to the app because it has one.
+    """
+
+    app: Typer

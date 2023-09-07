@@ -1,25 +1,33 @@
-import itertools
 import logging
 import os
 import string
 import types
+from collections import defaultdict
 from pathlib import Path
-from typing import Any, Iterable, List, Optional, Tuple
+from typing import Any, Iterable, Optional, Tuple, DefaultDict, Annotated
 
 import funcy
 import more_itertools
-import typer
+from typer import Typer, Option
 
 from jeeves_shell.entry_points import entry_points
-from jeeves_shell.errors import PluginConflict
+from jeeves_shell.errors import PluginConflict, UnsuitableRootApp
 from jeeves_shell.import_by_path import import_by_path
 from jeeves_shell.jeeves import Jeeves, LogLevel
 
 logger = logging.getLogger('jeeves')
 
 
-def list_installed_plugins() -> dict[str, list[typer.Typer]]:
+PluginsByMountPoint = DefaultDict[str, list[Typer]]
+
+LogLevelOption = Annotated[LogLevel, Option(help='Logging level.')]
+
+
+def list_installed_plugins() -> PluginsByMountPoint:
     """Find installed plugins."""
+    if os.getenv('JEEVES_DISABLE_PLUGINS'):
+        return defaultdict(list)
+
     plugins = [
         (entry_point.name, entry_point.load())  # type: ignore
         for entry_point in entry_points(group='jeeves')  # type: ignore
@@ -28,24 +36,26 @@ def list_installed_plugins() -> dict[str, list[typer.Typer]]:
     return funcy.group_values(plugins)
 
 
-def _construct_app_from_plugins() -> Jeeves:   # pragma: nocover
-    if os.getenv('JEEVES_DISABLE_PLUGINS'):
-        plugins_by_mount_point = {}
-    else:
-        plugins_by_mount_point = list_installed_plugins()
-
+def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Typer:
     root_app_plugins = plugins_by_mount_point.pop('__root__', [])
     if not root_app_plugins:
-        root_app = Jeeves(no_args_is_help=True)
+        return Jeeves(no_args_is_help=True)
 
-    else:
-        try:
-            [root_app] = root_app_plugins
-        except ValueError:
-            raise PluginConflict(
-                mount_point='__root__',
-                plugins=root_app_plugins,
-            )
+    try:
+        [root_app] = root_app_plugins
+    except ValueError:
+        raise PluginConflict(
+            mount_point='__root__',
+            plugins=root_app_plugins,
+        )
+
+    return root_app
+
+
+def _construct_app_from_plugins() -> Typer:   # pragma: nocover
+    plugins_by_mount_point = list_installed_plugins()
+
+    root_app = _construct_root_app(plugins_by_mount_point)
 
     for name, plugins_by_name in plugins_by_mount_point.items():
         try:
@@ -69,7 +79,7 @@ def _is_function(python_object) -> bool:
 
 
 def _is_typer(python_object) -> bool:
-    return isinstance(python_object, typer.Typer)
+    return isinstance(python_object, Typer)
 
 
 def _is_name_suitable(name: str):
@@ -124,10 +134,7 @@ def _augment_app_with_jeeves_file(
 
 def _configure_callback(app: Jeeves) -> Jeeves:
     def _root_app_callback(   # noqa: WPS430
-        log_level: LogLevel = typer.Option(
-            LogLevel.ERROR,
-            help='Logging level.',
-        ),
+        log_level: LogLevelOption = LogLevel.ERROR,
     ):   # pragma: nocover
         app.log_level = log_level
         logging.basicConfig(
@@ -139,10 +146,7 @@ def _configure_callback(app: Jeeves) -> Jeeves:
         )
 
     if app.registered_callback is not None:
-        raise ValueError(
-            f'Tried to register the default Jeeves callback for {app}, but it '
-            f'already has an existing callback: {app.registered_callback}.',
-        )
+        raise UnsuitableRootApp(app=app)
 
     app.callback()(_root_app_callback)
     return app
