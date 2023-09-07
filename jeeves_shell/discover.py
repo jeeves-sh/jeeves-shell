@@ -6,38 +6,58 @@ import types
 from pathlib import Path
 from typing import Any, Iterable, List, Optional, Tuple
 
+import funcy
 import more_itertools
 import typer
 
 from jeeves_shell.entry_points import entry_points
+from jeeves_shell.errors import PluginConflict
 from jeeves_shell.import_by_path import import_by_path
 from jeeves_shell.jeeves import Jeeves, LogLevel
 
 logger = logging.getLogger('jeeves')
 
 
-def list_installed_plugins() -> List[Tuple[str, Jeeves]]:
+def list_installed_plugins() -> dict[str, list[typer.Typer]]:
     """Find installed plugins."""
-    return [
+    plugins = [
         (entry_point.name, entry_point.load())  # type: ignore
         for entry_point in entry_points(group='jeeves')  # type: ignore
     ]
 
+    return funcy.group_values(plugins)
+
 
 def _construct_app_from_plugins() -> Jeeves:   # pragma: nocover
     if os.getenv('JEEVES_DISABLE_PLUGINS'):
-        plugins = []
+        plugins_by_mount_point = {}
     else:
-        plugins = list_installed_plugins()
+        plugins_by_mount_point = list_installed_plugins()
 
-    if len(plugins) == 1:
-        _name, plugin = more_itertools.first(plugins)
-        return plugin
+    root_app_plugins = plugins_by_mount_point.pop('__root__', [])
+    if not root_app_plugins:
+        root_app = Jeeves(no_args_is_help=True)
 
-    root_app = Jeeves(no_args_is_help=True)
-    for name, sub_typer in plugins:
+    else:
+        try:
+            [root_app] = root_app_plugins
+        except ValueError:
+            raise PluginConflict(
+                mount_point='__root__',
+                plugins=root_app_plugins,
+            )
+
+    for name, plugins_by_name in plugins_by_mount_point.items():
+        try:
+            [plugin] = plugins_by_name
+        except ValueError:
+            raise PluginConflict(
+                mount_point=name,
+                plugins=plugins_by_name,
+            )
+
         root_app.add_typer(
-            typer_instance=sub_typer,
+            typer_instance=plugin,
             name=name,
         )
 
@@ -116,6 +136,12 @@ def _configure_callback(app: Jeeves) -> Jeeves:
                 LogLevel.INFO: logging.INFO,
                 LogLevel.DEBUG: logging.DEBUG,
             }[log_level],
+        )
+
+    if app.registered_callback is not None:
+        raise ValueError(
+            f'Tried to register the default Jeeves callback for {app}, but it '
+            f'already has an existing callback: {app.registered_callback}.'
         )
 
     app.callback()(_root_app_callback)
