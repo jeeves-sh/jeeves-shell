@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from mkdocs_macros.plugin import MacrosPlugin
-from sh import bash, ErrorReturnCode
+from sh import ErrorReturnCode, bash
 from sh import j as jeeves
 from sh import python
 

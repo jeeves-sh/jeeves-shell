@@ -141,7 +141,7 @@ def _configure_callback(app: Jeeves) -> Jeeves:
     if app.registered_callback is not None:
         raise ValueError(
             f'Tried to register the default Jeeves callback for {app}, but it '
-            f'already has an existing callback: {app.registered_callback}.'
+            f'already has an existing callback: {app.registered_callback}.',
         )
 
     app.callback()(_root_app_callback)

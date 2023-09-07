@@ -4,13 +4,10 @@ from pathlib import Path
 
 import more_itertools
 import pytest
+from base import environment_from_jeeves_file, environment_from_jeeves_package
 from typer import Typer
 
 from jeeves_shell.discover import retrieve_commands_from_jeeves_file
-from base import (
-    environment_from_jeeves_file,
-    environment_from_jeeves_package,
-)
 
 
 @pytest.fixture(autouse=True)

@@ -1,12 +1,12 @@
 from pathlib import Path
 
 import pytest
+from base import environment_from_jeeves_file
 
 from jeeves_shell import Jeeves
 from jeeves_shell.cli import execute_app
 from jeeves_shell.discover import construct_app
 from jeeves_shell.errors import NoCommandsFound
-from base import environment_from_jeeves_file
 
 
 def test_execute_empty_app():
