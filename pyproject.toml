@@ -65,12 +65,14 @@ wemake-python-styleguide = [
 [tool.flakeheaven.exceptions."jeeves_shell/discover.py"]
 wemake-python-styleguide = [
   "-WPS404",
+
+  # Found an iterable unpacking to list
+  "-WPS359",
+
+  # Found single element destructuring
+  "-WPS460",
 ]
-flake8-bugbear = [
-  # Do not perform function calls in argument defaults
-  # These are Typer arguments.
-  "-B008",
-]
+
 
 
 [tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]
