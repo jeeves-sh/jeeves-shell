@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "jeeves-shell"
 description = "Pythonic replacement for GNU Make"
-version = "2.2.0"
+version = "2.3.0"
 license = "MIT"
 
 authors = []
@@ -65,12 +65,14 @@ wemake-python-styleguide = [
 [tool.flakeheaven.exceptions."jeeves_shell/discover.py"]
 wemake-python-styleguide = [
   "-WPS404",
+
+  # Found an iterable unpacking to list
+  "-WPS359",
+
+  # Found single element destructuring
+  "-WPS460",
 ]
-flake8-bugbear = [
-  # Do not perform function calls in argument defaults
-  # These are Typer arguments.
-  "-B008",
-]
+
 
 
 [tool.flakeheaven.exceptions."jeeves_shell/entry_points.py"]
@@ -88,4 +90,10 @@ pyflakes = [
 pyflakes = [
     # %s imported but unused
     "-F401",
+]
+
+[tool.flakeheaven.exceptions."docs/plugins/how-to.md"]
+flake8-eradicate = [
+  # Found commented out code
+  "-E800"
 ]

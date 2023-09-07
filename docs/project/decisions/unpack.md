@@ -26,6 +26,8 @@ from typer import Typer
 
 @dataclass
 class Person:
+    """Person."""
+
     first_name: str
     last_name: str
 
@@ -33,7 +35,7 @@ app = Typer()
     
 @app.command()
 def process_person(person: Unpack[Person]):
-    ...
+    """Do something with a person."""
 ```
 
 This approach allows users to provide each attribute of `Person` as a separate argument: `command --first-name John --last-name Doe`.

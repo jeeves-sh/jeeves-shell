@@ -13,7 +13,7 @@ hello: examples/hello.py
 
 ```toml
 [tool.poetry.plugins.jeeves]
-super_plugin = "jeeves_super_plugin:app"
+super-plugin = "jeeves_super_plugin:app"
 ```
 
 * Create your Typer instance:
@@ -21,7 +21,7 @@ super_plugin = "jeeves_super_plugin:app"
 ```python title="jeeves_super_plugin/__init__.py"
 import typer
 
-app = typer.Typer()
+app = typer.Typer(no_args_is_help=True)
 
 @app.command()
 def hi(name: str):
@@ -33,8 +33,20 @@ def bye():
 ```
 
 * `poetry install`
-* `j`
+* `j super-plugin`
 
-You should see:
+You should see `hi` and `bye` as available commands.
 
-{{ j(page.meta.hello, environment={'JEEVES_DISABLE_PLUGINS': 'true'}, args=['hi', '--help']) }}
+## Special plugin name: `__root__`
+
+```toml
+[tool.poetry.plugins.jeeves]
+__root__ = "jeeves_super_plugin:app"
+```
+
+This will mean that your plugin _replaces_ the default root Jeeves app, and your commands will be available as
+
+* `j hi` instead of `j super-plugin hi`
+* `j bye` instead of `j super-plugin bye`.
+
+This is useful for plugins like `jeeves-yeti-pyproject`, to make the commands you very often use, like `lint`, faster to type.

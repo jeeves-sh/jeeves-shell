@@ -7,7 +7,7 @@ def import_by_path(path: Path):
     string_path = str(path)
     sys.path.insert(0, string_path)
 
-    import jeeves   # noqa: WPS433
+    import jeeves  # noqa: WPS433
 
     sys.path.remove(string_path)
 

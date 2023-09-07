@@ -4,13 +4,10 @@ from pathlib import Path
 
 import more_itertools
 import pytest
+from base import environment_from_jeeves_file, environment_from_jeeves_package
 from typer import Typer
 
 from jeeves_shell.discover import retrieve_commands_from_jeeves_file
-from base import (
-    environment_from_jeeves_file,
-    environment_from_jeeves_package,
-)
 
 
 @pytest.fixture(autouse=True)
@@ -78,7 +75,12 @@ def test_multiple(jeeves_files: Path):
 
 def test_missing(jeeves_files: Path):
     with tempfile.TemporaryDirectory() as raw_directory:
-        assert not list(retrieve_commands_from_jeeves_file(Path(raw_directory)))
+        assert not list(
+            retrieve_commands_from_jeeves_file(
+                # This directory does not exist ⬎
+                Path(raw_directory) / 'foo',
+            ),
+        )
 
 
 def test_syntax_error(jeeves_files: Path):
