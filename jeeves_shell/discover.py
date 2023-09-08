@@ -4,7 +4,7 @@ import string
 import types
 from collections import defaultdict
 from pathlib import Path
-from typing import Annotated, Any, DefaultDict, Iterable, Optional, Tuple
+from typing import Annotated, Any, DefaultDict, Iterable, Optional, Tuple, cast
 
 import funcy
 from typer import Option, Typer
@@ -35,7 +35,7 @@ def list_installed_plugins() -> PluginsByMountPoint:
     return funcy.group_values(plugins)
 
 
-def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Typer:
+def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Jeeves:
     root_app_plugins = plugins_by_mount_point.pop('__root__', [])
     if not root_app_plugins:
         return Jeeves(no_args_is_help=True)
@@ -48,10 +48,10 @@ def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Typer:
             plugins=root_app_plugins,
         )
 
-    return root_app
+    return cast(Jeeves, root_app)
 
 
-def _construct_app_from_plugins() -> Typer:   # pragma: nocover
+def _construct_app_from_plugins() -> Jeeves:   # pragma: nocover
     plugins_by_mount_point = list_installed_plugins()
 
     root_app = _construct_root_app(plugins_by_mount_point)
