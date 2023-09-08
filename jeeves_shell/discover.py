@@ -35,7 +35,8 @@ def list_installed_plugins() -> PluginsByMountPoint:
     return funcy.group_values(plugins)
 
 
-def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Jeeves:
+def construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Jeeves:
+    """Construct root Typer app for Jeeves."""
     root_app_plugins = plugins_by_mount_point.pop('__root__', [])
     if not root_app_plugins:
         return Jeeves(no_args_is_help=True)
@@ -54,7 +55,7 @@ def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Jeeves:
 def _construct_app_from_plugins() -> Jeeves:   # pragma: nocover
     plugins_by_mount_point = list_installed_plugins()
 
-    root_app = _construct_root_app(plugins_by_mount_point)
+    root_app = construct_root_app(plugins_by_mount_point)
 
     for name, plugins_by_name in plugins_by_mount_point.items():
         try:
