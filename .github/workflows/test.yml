@@ -42,10 +42,10 @@ jobs:
         poetry install
 
     - name: Lint
-      run: j lint
+      run: poetry run j lint
 
     - name: Test
-      run: j test
+      run: poetry run j test
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
