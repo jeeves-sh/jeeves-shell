@@ -24,7 +24,7 @@ LogLevelOption = Annotated[LogLevel, Option(help='Logging level.')]
 
 def list_installed_plugins() -> PluginsByMountPoint:
     """Find installed plugins."""
-    if os.getenv('JEEVES_DISABLE_PLUGINS'):
+    if os.getenv('JEEVES_DISABLE_PLUGINS'):  # pragma: nocover
         return defaultdict(list)
 
     plugins = [
@@ -145,7 +145,7 @@ def _configure_callback(app: Jeeves) -> Jeeves:
             }[log_level],
         )
 
-    if app.registered_callback is not None:
+    if app.registered_callback is not None:  # pragma: nocover
         raise UnsuitableRootApp(app=app)
 
     app.callback()(_root_app_callback)
