@@ -4,7 +4,7 @@ import string
 import types
 from collections import defaultdict
 from pathlib import Path
-from typing import Annotated, Any, DefaultDict, Iterable, Optional, Tuple
+from typing import Annotated, Any, DefaultDict, Iterable, Optional, Tuple, cast
 
 import funcy
 from typer import Option, Typer
@@ -24,7 +24,7 @@ LogLevelOption = Annotated[LogLevel, Option(help='Logging level.')]
 
 def list_installed_plugins() -> PluginsByMountPoint:
     """Find installed plugins."""
-    if os.getenv('JEEVES_DISABLE_PLUGINS'):
+    if os.getenv('JEEVES_DISABLE_PLUGINS'):  # pragma: nocover
         return defaultdict(list)
 
     plugins = [
@@ -35,7 +35,8 @@ def list_installed_plugins() -> PluginsByMountPoint:
     return funcy.group_values(plugins)
 
 
-def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Typer:
+def construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Jeeves:
+    """Construct root Typer app for Jeeves."""
     root_app_plugins = plugins_by_mount_point.pop('__root__', [])
     if not root_app_plugins:
         return Jeeves(no_args_is_help=True)
@@ -48,13 +49,13 @@ def _construct_root_app(plugins_by_mount_point: PluginsByMountPoint) -> Typer:
             plugins=root_app_plugins,
         )
 
-    return root_app
+    return cast(Jeeves, root_app)
 
 
-def _construct_app_from_plugins() -> Typer:   # pragma: nocover
+def _construct_app_from_plugins() -> Jeeves:   # pragma: nocover
     plugins_by_mount_point = list_installed_plugins()
 
-    root_app = _construct_root_app(plugins_by_mount_point)
+    root_app = construct_root_app(plugins_by_mount_point)
 
     for name, plugins_by_name in plugins_by_mount_point.items():
         try:
@@ -144,7 +145,7 @@ def _configure_callback(app: Jeeves) -> Jeeves:
             }[log_level],
         )
 
-    if app.registered_callback is not None:
+    if app.registered_callback is not None:  # pragma: nocover
         raise UnsuitableRootApp(app=app)
 
     app.callback()(_root_app_callback)

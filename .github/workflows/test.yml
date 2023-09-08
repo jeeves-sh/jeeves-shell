@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.10']
+        python-version: ['3.10', '3.11']
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Set up Python ${{ matrix.python-version }}
@@ -38,15 +38,14 @@ jobs:
     - name: Install dependencies
       run: |
         poetry config virtualenvs.in-project true
-        poetry run pip install -U pip
+        poetry run pip install -U pip jeeves-yeti-pyproject
         poetry install
-        pip install jeeves-yeti-pyproject
 
     - name: Lint
-      run: j lint
+      run: poetry run j lint
 
     - name: Test
-      run: j test
+      run: poetry run j test
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
