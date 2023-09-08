@@ -2,7 +2,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-import more_itertools
+import funcy
 import pytest
 from base import environment_from_jeeves_file, environment_from_jeeves_package
 from typer import Typer
@@ -40,7 +40,7 @@ def test_empty(jeeves_files: Path):
 
 def test_single(jeeves_files: Path):
     with environment_from_jeeves_file(jeeves_files / 'single.py') as directory:
-        name, _command = more_itertools.first(
+        name, _command = funcy.first(
             retrieve_commands_from_jeeves_file(directory),
         )
 
@@ -65,7 +65,7 @@ def test_multiple(jeeves_files: Path):
     ) as directory:
         command_names = list(
             map(
-                more_itertools.first,
+                funcy.first,
                 retrieve_commands_from_jeeves_file(directory),
             ),
         )
@@ -105,7 +105,7 @@ def test_package(jeeves_files: Path):
     ) as directory:
         command_names = set(
             map(
-                more_itertools.first,
+                funcy.first,
                 retrieve_commands_from_jeeves_file(directory),
             ),
         )

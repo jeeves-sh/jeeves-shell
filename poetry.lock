@@ -1453,4 +1453,4 @@ all = ["rich", "sh"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "c54b8003e31a2d309723a5927bebead8031a61ad2af37c601877a8446b04cf1b"
+content-hash = "97a6e885478609893ad1123db74bdb2cfc92c2ad794ce0bcc66b8d0dfbff39bd"

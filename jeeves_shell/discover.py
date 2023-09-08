@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Annotated, Any, DefaultDict, Iterable, Optional, Tuple
 
 import funcy
-import more_itertools
 from typer import Option, Typer
 
 from jeeves_shell.entry_points import entry_points
@@ -83,7 +82,7 @@ def _is_typer(python_object) -> bool:
 
 
 def _is_name_suitable(name: str):
-    first_character = more_itertools.first(name)
+    first_character = funcy.first(name)
     return first_character not in f'{string.ascii_uppercase}_'
 
 
