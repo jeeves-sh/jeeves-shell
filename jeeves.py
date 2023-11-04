@@ -33,6 +33,7 @@ def cover_image():
     assets = Path(__file__).parent / 'docs/assets'
     sh.convert(
         assets / 'cover-original.png',
-        '-crop', 'x400+0+100',
+        '-crop',
+        'x400+0+100',
         assets / 'cover.png',
     )
