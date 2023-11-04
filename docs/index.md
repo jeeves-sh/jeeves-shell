@@ -24,6 +24,8 @@ hide:
 
 # Features
 
+![](assets/cover-original.png){ align=right style="max-width: 30%" }
+
 <div class="grid cards" markdown>
 
 -   :fontawesome-solid-terminal:{ .lg .middle } __Build custom shell commands__
@@ -72,7 +74,9 @@ hide:
 
 </div>
 
-{# todo: Implement Roadmap page #}
+<h1 style="text-align: center" markdown>
+See [:material-file-document-edit: The tutorial](jeeves-py){ .md-button } for details :smirk_cat:
+</h1>
 
 # Installation
 
@@ -87,7 +91,5 @@ hide:
     ```bash
     poetry add --group dev --extras=all jeeves-shell
     ```
-
-Find out more [in the tutorial…](jeeves-py)
 
 <script src="/assets/termynal/termynal.js" data-termynal-container="#termynal"></script>
