@@ -26,3 +26,14 @@ def install_graphviz():
 def serve():
     """Serve documentation locally."""
     sh.mkdocs.serve('-a', 'localhost:8971', _fg=True)
+
+
+def cover_image():
+    """Generate cover image for the front page."""
+    assets = Path(__file__).parent / 'docs/assets'
+    sh.convert(
+        assets / 'cover-original.png',
+        '-crop',
+        'x400+0+100',
+        assets / 'cover.png',
+    )
