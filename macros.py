@@ -1,6 +1,6 @@
 """MkDocs macros for the documentation site."""
 import functools
-import operator
+import os
 import shutil
 import tempfile
 import textwrap
@@ -143,6 +143,15 @@ def j(
     args: Optional[List[str]] = None,
     environment: Optional[Dict[str, str]] = None,
 ):
+    environment = environment or {
+        'TERM': 'dumb',
+    }
+
+    environment = {
+        **os.environ,
+        **environment,
+    }
+
     if annotations is None:
         annotations = []
 
