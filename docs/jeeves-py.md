@@ -18,7 +18,7 @@ Every Python function in `jeeves.py` is converted into a command.
 * Docstrings are used as command documentation,
 * Command arguments are configured by arguments of respective functions (and their type hints!)
 
-Let's recall the Hello World script we [:arrow_backward: had referenced before](../#get-started):
+Let's look at a simple Hello World script.
 
 {{ code(page.meta.hello, language='python', title='jeeves.py') }}
 

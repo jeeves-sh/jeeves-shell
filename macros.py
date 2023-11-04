@@ -143,13 +143,12 @@ def j(
     args: Optional[List[str]] = None,
     environment: Optional[Dict[str, str]] = None,
 ):
-    environment = environment or {
-        'TERM': 'dumb',
-    }
+    environment = environment or {}
 
     environment = {
         **os.environ,
         **environment,
+        'TERM': 'dumb',
     }
 
     if annotations is None:
