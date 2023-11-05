@@ -100,7 +100,7 @@ See [:material-file-document-edit: The tutorial](jeeves-py){ .md-button } for de
 
     ---
 
-    [:heavy_plus_sign: Submit an issue!](https://github.com/yeti-sh/jeeves-shell/issues/new)    
+    [:heavy_plus_sign: Submit an issue!](https://github.com/jeeves-sh/jeeves-shell/issues/new)    
 
 
 -   :fontawesome-solid-ellipsis:{ .lg .middle } __Anything else?__
