@@ -9,7 +9,7 @@ hide:
 
 {# todo: draw a picture where Makefile is crossed away and jeeves.py is shown instead #}
 
-While GNU make goals are specified in a file named `Makefile`, Jeeves looks for commands in a file named `jeeves.py` in current directory.
+While :simple-gnu: GNU Make goals are specified in a file named `Makefile`, Jeeves looks for commands in a file named `jeeves.py` in current directory.
 
 ## Commands
 
@@ -29,3 +29,7 @@ Check out how automated documentation works:
 Or, for the given command:
 
 {{ j(page.meta.hello, environment={'JEEVES_DISABLE_PLUGINS': 'true'}, args=['hi', '--help']) }}
+
+Let's run it:
+
+{{ j(page.meta.hello, environment={'JEEVES_DISABLE_PLUGINS': 'true'}, args=['hi', 'John']) }}
