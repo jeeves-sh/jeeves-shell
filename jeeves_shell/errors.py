@@ -1,7 +1,9 @@
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from documented import DocumentedError
+import funcy
+from documented import DocumentedError, Documented
 from typer import Typer
 
 
@@ -55,3 +57,33 @@ class UnsuitableRootApp(DocumentedError):
     """
 
     app: Typer
+
+
+@dataclass
+class FormattedError(Documented):  # pragma: no cover
+    """**{self.exception_class}:** {self.message}"""  # noqa: D400
+
+    exception: Exception
+
+    @property
+    def exception_class(self):
+        """Class of the exception."""
+        return self.exception.__class__.__name__
+
+    @property
+    def message(self):
+        """Exception message."""
+        return str(self.exception)
+
+
+class TracebackAdvice(Documented):  # pragma: no cover
+    """
+    💡 To see Python traceback, use:
+
+    `j --log-level info {self.args}`
+    """  # noqa: D400
+
+    @property
+    def args(self):
+        """Format current CLI args."""
+        return ' '.join(funcy.rest(sys.argv))
