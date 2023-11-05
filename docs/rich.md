@@ -11,8 +11,8 @@ hide:
 
 [:material-github: textualize/rich](https://github.com/textualize/rich) is a modern library for formatting shell output that we recommend using with `jeeves`.
 
-!!! info "Installation"
-    It will be installed as an optional dependency of `jeeves-shell[all]`.
+!!! success "Installation"
+    It will be installed as a dependency of `jeeves-shell`.
 
 ![Rich Logo](https://github.com/textualize/rich/raw/master/imgs/logo.svg)
 

@@ -8,6 +8,18 @@ hide:
 
 # :material-bow-tie: Welcome to Jeeves!
 
+=== "pip"
+
+    ```bash
+    pip install 'jeeves-shell[all]'
+    ```
+
+=== "poetry"
+
+    ```bash
+    poetry add --group dev --extras=all jeeves-shell
+    ```
+
 <div class="grid" markdown>
 
 {{ code("examples/homepage.py", language='python', title='jeeves.py') }}
@@ -24,7 +36,8 @@ hide:
 
 # Features
 
-![](assets/cover-original.png){ align=right style="max-width: 30%" }
+!!! info inline end ""
+    ![](assets/cover-original.png)
 
 <div class="grid cards" markdown>
 
@@ -78,18 +91,25 @@ hide:
 See [:material-file-document-edit: The tutorial](jeeves-py){ .md-button } for details :smirk_cat:
 </h1>
 
-# Installation
 
-=== "pip"
+# :material-phone-in-talk: Let's talk
 
-    ```bash
-    pip install 'jeeves-shell[all]'
-    ```
+<div class="grid cards" markdown>
 
-=== "poetry"
+-   :material-bug:{ .lg .middle } __Bug? Feature request?__
 
-    ```bash
-    poetry add --group dev --extras=all jeeves-shell
-    ```
+    ---
+
+    [:heavy_plus_sign: Submit an issue!](https://github.com/yeti-sh/jeeves-shell/issues/new)    
+
+
+-   :fontawesome-solid-ellipsis:{ .lg .middle } __Anything else?__
+
+    ---
+
+    See my site: [:material-web: yeti.sh](https://yeti.sh)    
+
+
+</div>
 
 <script src="/assets/termynal/termynal.js" data-termynal-container="#termynal"></script>
