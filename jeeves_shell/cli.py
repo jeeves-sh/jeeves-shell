@@ -26,7 +26,7 @@ def print_unhandled_exception(err: Exception):  # pragma: no cover
     console = Console()
 
     try:
-        console.print(Panel(err, style='red'))
+        console.print(Panel(err, style='red'))  # type: ignore
     except NotRenderableError:
         console.print(Panel(FormattedError(exception=err), style='red'))
 
