@@ -17,7 +17,7 @@ def execute_app(typer_app: Jeeves):
     try:
         return typer_app()
 
-    except AssertionError as err:
+    except RuntimeError as err:
         raise NoCommandsFound(directory=Path.cwd()) from err
 
 
