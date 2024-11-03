@@ -8,7 +8,7 @@ from typer import Typer
 
 
 @dataclass
-class NoCommandsFound(DocumentedError):
+class NoCommandsFound(DocumentedError):   # type: ignore
     """
     No Jeeves commands found, and there is nothing to show.
 
@@ -23,7 +23,7 @@ class NoCommandsFound(DocumentedError):
 
 
 @dataclass
-class PluginConflict(DocumentedError):
+class PluginConflict(DocumentedError):   # type: ignore
     """
     Conflicting plugins detected.
 
@@ -46,7 +46,7 @@ class PluginConflict(DocumentedError):
 
 
 @dataclass
-class UnsuitableRootApp(DocumentedError):
+class UnsuitableRootApp(DocumentedError):   # type: ignore
     """
     Typer app wants to be used as root Jeeves app but it has a callback.
 
@@ -60,7 +60,7 @@ class UnsuitableRootApp(DocumentedError):
 
 
 @dataclass
-class FormattedError(Documented):  # pragma: no cover
+class FormattedError(Documented):    # type: ignore  # pragma: no cover
     """**{self.exception_class}:** {self.message}"""  # noqa: D400
 
     exception: Exception

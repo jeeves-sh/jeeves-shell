@@ -28,8 +28,8 @@ def list_installed_plugins() -> PluginsByMountPoint:
         return defaultdict(list)
 
     plugins = [
-        (entry_point.name, entry_point.load())  # type: ignore
-        for entry_point in entry_points(group='jeeves')  # type: ignore
+        (entry_point.name, entry_point.load())
+        for entry_point in entry_points(group='jeeves')
     ]
 
     return funcy.group_values(plugins)
