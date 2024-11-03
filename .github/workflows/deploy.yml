@@ -15,7 +15,7 @@ jobs:
       - run: pip install -q poetry
       - run: poetry config virtualenvs.create false --local
       - run: poetry install
-      - run: pip install jeeves-yeti-pyproject
+      - run: pip install jeeves-yeti-pyproject>=0.2.40
       - uses: actions/checkout@v3
         with:
           repository: jeeves-sh/mkdocs-material-insiders
