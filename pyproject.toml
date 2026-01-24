@@ -8,6 +8,7 @@ name = "jeeves-shell"
 description = "Pythonic replacement for GNU Make"
 version = "2.3.4"
 license = "MIT"
+requires-poetry = ">=2.2,<3.0"
 
 authors = []
 
