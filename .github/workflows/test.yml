@@ -10,35 +10,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      POETRY_KEYRING_ENABLED: "false"
+      PYTHON_KEYRING_BACKEND: keyring.backends.null.Keyring
     strategy:
       matrix:
-        python-version: ['3.11', '3.12']
+        python-version: ['3.11', '3.12', '3.14']
 
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
     - name: Install poetry
       run: |
-        pip install 'poetry<1.5'
-
-        # Adding `poetry` to `$PATH`:
-        echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+        python -m pip install -U pip
+        python -m pip install "poetry==2.3.0"
 
     - name: Set up cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: .venv
         key: venv-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libxml2-dev libxslt1-dev pkg-config
+        sudo rm -rf /var/lib/apt/lists/*
     - name: Install dependencies
       run: |
         poetry config virtualenvs.in-project true
-        poetry run pip install -U pip jeeves-yeti-pyproject
         poetry install
 
     - name: Lint
@@ -49,6 +54,6 @@ jobs:
 
     # Upload coverage to codecov: https://codecov.io/
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v4
       with:
         file: ./coverage.xml

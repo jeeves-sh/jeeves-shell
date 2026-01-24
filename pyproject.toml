@@ -8,6 +8,7 @@ name = "jeeves-shell"
 description = "Pythonic replacement for GNU Make"
 version = "2.3.4"
 license = "MIT"
+requires-poetry = ">=2.2,<3.0"
 
 authors = []
 
@@ -43,6 +44,8 @@ all = ["sh"]
 [tool.poetry.group.dev.dependencies]
 m2r2 = "^0.2"
 mkdocstrings = "^0.19.1"
+jeeves-yeti-pyproject = ">=1.0.0"
+pydantic = ">=2.12.5"
 
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
 importlib-metadata = "<5.0"
@@ -53,7 +56,6 @@ mkdocs-awesome-pages-plugin = "^2.9.1"
 mkdocs-material = "^9.1.13"
 mkdocs-iolanta = "^0.1.5"
 sh = "^2.0.4"
-iolanta-roadmap = "^0.1.0"
 urllib3 = "<2.0.0"
 
 [tool.flakeheaven.exceptions."jeeves_shell/jeeves.py"]
