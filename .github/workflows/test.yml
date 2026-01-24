@@ -36,6 +36,11 @@ jobs:
       with:
         path: .venv
         key: venv-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libxml2-dev libxslt1-dev pkg-config
+        sudo rm -rf /var/lib/apt/lists/*
     - name: Install dependencies
       run: |
         poetry config virtualenvs.in-project true
