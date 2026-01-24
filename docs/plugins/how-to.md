@@ -5,7 +5,7 @@ hello: examples/hello.py
 
 # :fontawesome-solid-plug-circle-plus: Your new `jeeves-super-plugin`
 
-* Create a Python 3.10+ virtual env for your new plugin project
+ * Create a Python 3.10+ virtual env for your new plugin project (recommended: Python 3.14)
 * `pip install -U pip poetry`
 * `poetry init`
 * `poetry add jeeves-shell --extras=all`
