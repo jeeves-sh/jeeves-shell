@@ -44,6 +44,8 @@ all = ["sh"]
 [tool.poetry.group.dev.dependencies]
 m2r2 = "^0.2"
 mkdocstrings = "^0.19.1"
+jeeves-yeti-pyproject = ">=1.0.0"
+pydantic = ">=2.12.5"
 
 markupsafe = "<2.1"   # Otherwise, `jinja2` will fail
 importlib-metadata = "<5.0"
