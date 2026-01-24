@@ -784,23 +784,6 @@ python-dateutil = ">=2.8.1"
 dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
-name = "graphviz"
-version = "0.20.3"
-description = "Simple Python interface for Graphviz"
-optional = false
-python-versions = ">=3.8"
-groups = ["dev"]
-files = [
-    {file = "graphviz-0.20.3-py3-none-any.whl", hash = "sha256:81f848f2904515d8cd359cc611faba817598d2feaac4027b266aa3eda7b3dde5"},
-    {file = "graphviz-0.20.3.zip", hash = "sha256:09d6bc81e6a9fa392e7ba52135a9d49f1ed62526f96499325930e87ca1b5925d"},
-]
-
-[package.extras]
-dev = ["flake8", "pep8-naming", "tox (>=3)", "twine", "wheel"]
-docs = ["sphinx (>=5,<7)", "sphinx-autodoc-typehints", "sphinx-rtd-theme"]
-test = ["coverage", "pytest (>=7,<8.1)", "pytest-cov", "pytest-mock (>=3)"]
-
-[[package]]
 name = "idna"
 version = "3.7"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -892,22 +875,6 @@ files = [
 [package.dependencies]
 iolanta = ">=1.0.12,<2.0.0"
 Jinja2 = ">=3.1.2,<4.0.0"
-
-[[package]]
-name = "iolanta-roadmap"
-version = "0.1.0"
-description = "Structured Roadmaps"
-optional = false
-python-versions = ">=3.10,<4.0"
-groups = ["dev"]
-files = [
-    {file = "iolanta_roadmap-0.1.0-py3-none-any.whl", hash = "sha256:f8ce73d0548573fc1999591010c2250dd6cdc20dc5f4818c7462a628795b3d06"},
-    {file = "iolanta_roadmap-0.1.0.tar.gz", hash = "sha256:fcbf8bc337a70ed5505d9529dbfff6cc3b88a42ffdb0a60d0be295823dba84d9"},
-]
-
-[package.dependencies]
-graphviz = ">=0.20.1,<0.21.0"
-iolanta = ">=1.0.7,<2.0.0"
 
 [[package]]
 name = "iolanta-tables"
@@ -3217,4 +3184,4 @@ all = ["sh"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "8e7ce04a65865302ccca92763a569343cc3bc9088ce51cc516cf7dbea2046c8d"
+content-hash = "2fa0b46392e777bbcca10ab88cf9c675bd8afd95ca8a06ccafc7ce33bf6da77c"
