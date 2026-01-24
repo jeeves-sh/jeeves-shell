@@ -36,8 +36,8 @@ jobs:
     - name: Install dependencies
       run: |
         poetry config virtualenvs.in-project true
-        poetry run python -m pip install -U pip jeeves-yeti-pyproject
         poetry install
+        poetry run python -m pip install -U pip jeeves-yeti-pyproject
 
     - name: Lint
       run: poetry run j lint
