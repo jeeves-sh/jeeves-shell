@@ -56,7 +56,6 @@ mkdocs-awesome-pages-plugin = "^2.9.1"
 mkdocs-material = "^9.1.13"
 mkdocs-iolanta = "^0.1.5"
 sh = "^2.0.4"
-iolanta-roadmap = "^0.1.0"
 urllib3 = "<2.0.0"
 
 [tool.flakeheaven.exceptions."jeeves_shell/jeeves.py"]
